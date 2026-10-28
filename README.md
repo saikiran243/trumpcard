@@ -1,2 +1,0 @@
-# trumpcard
-Cricket card game

@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="color-scheme" content="dark light"/>
+<link rel="icon" href="data:,">
+<title>IPL Legends 56-Card Top Trumps</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07130d;--bg2:#0c2417;--panel:#10291b;--panel2:#163622;--line:#2a5a3c;--gold:#f5c518;--gold2:#ffdf6b;--text:#f4f7f2;--muted:#b9c9b8;--red:#e63946;--green:#22c55e;--cardw:340px}
+*{box-sizing:border-box}body{margin:0;font-family:Barlow,system-ui,sans-serif;background:radial-gradient(900px 500px at 50% -10%,#1d5c33 0,transparent 60%),linear-gradient(180deg,var(--bg2),var(--bg));color:var(--text);min-height:100vh}
+h1,h2,h3,.cond{font-family:"Barlow Condensed",sans-serif;letter-spacing:.02em}
+button{font-family:inherit;cursor:pointer}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;max-width:1180px;margin:0 auto;gap:10px;flex-wrap:wrap}
+.logo{font-family:"Barlow Condensed";font-size:28px;font-weight:800;line-height:.9}.logo span{color:var(--gold)}
+.sub{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.btn{border:1px solid var(--line);background:#173d27;color:#fff;padding:10px 16px;border-radius:999px;font-weight:700;font-size:14px}
+.btn.gold{background:var(--gold);color:#111;border-color:#d4a017}.btn.red{background:#7f1d1d;border-color:#991b1b}.btn:active{transform:scale(.98)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px 40px}
+.hero{text-align:center;padding:10px 0 18px}.hero h1{font-size:clamp(38px,7vw,72px);margin:0;line-height:.9;text-transform:uppercase}.hero h1 em{color:var(--gold);font-style:normal}.hero p{color:var(--muted);max-width:640px;margin:10px auto;font-size:16px;line-height:1.5}
+.panel{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:20px;padding:18px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:720px){.grid2{grid-template-columns:1fr}}
+.seg{display:flex;gap:8px;flex-wrap:wrap}.seg button{flex:1;min-width:110px;padding:12px 10px;border-radius:14px;border:2px solid var(--line);background:#0b2013;color:#fff;text-align:left}.seg button.sel{border-color:var(--gold);background:#2a2a0a}.seg b{display:block;font-size:15px}.seg span{font-size:12px;color:var(--muted)}
+label.lbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:800;display:block;margin:14px 0 8px}
+input[type=text]{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:#081a10;color:#fff;font-size:15px}
+.toggle{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px;margin-top:12px}
+.scorebar{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch;margin:14px 0}
+.score{background:#0b2013;border:1px solid var(--line);border-radius:16px;padding:12px;text-align:center}.score.active{border-color:var(--gold);box-shadow:0 0 0 2px #f5c51833,0 0 24px #f5c51833}.score .n{font-family:"Barlow Condensed";font-size:34px;line-height:1}.score .who{font-weight:800}
+.pot{align-self:center;text-align:center;background:#3a2f05;border:1px solid #8a6d00;border-radius:16px;padding:10px 14px;min-width:110px}.pot b{font-size:22px;color:var(--gold)}
+.arena{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:start;justify-items:center}@media(max-width:820px){.arena{grid-template-columns:1fr}.vs{order:-1}}
+.vs{font-family:"Barlow Condensed";font-size:28px;color:var(--gold);align-self:center;background:#00000055;border:1px solid var(--line);width:52px;height:52px;border-radius:50%;display:grid;place-items:center}
+.colLabel{font-weight:800;text-align:center;margin-bottom:8px}
+/* CARD */
+.tcard{width:min(var(--cardw),92vw);background:#fff;color:#111;border-radius:18px;overflow:hidden;box-shadow:0 18px 40px #0009;border:3px solid #111;position:relative;text-align:left}
+.tcard.dim{opacity:.55}
+.art{height:190px;position:relative;overflow:hidden}
+.ribbon{position:absolute;top:12px;left:-34px;transform:rotate(-38deg);color:#fff;font-weight:800;font-size:11px;padding:5px 40px;z-index:3;letter-spacing:.06em;box-shadow:0 2px 8px #0006;text-align:center;line-height:1.2}
+.wm{position:absolute;right:6px;top:6px;font-family:"Barlow Condensed";font-size:64px;font-weight:800;opacity:.16;color:#fff}
+.pill{position:absolute;left:10px;right:10px;bottom:10px;z-index:3;background:#111d;color:#fff;border:1px solid #ffffff55;backdrop-filter:blur(4px);border-radius:999px;padding:7px 12px;font-weight:700;font-size:13px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nameplate{background:linear-gradient(180deg,#2b2b2b,#111);color:#fff;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.nameplate .nm{font-family:"Barlow Condensed";font-size:24px;font-weight:800;line-height:1;text-transform:uppercase}
+.teampill{font-weight:800;font-size:12px;padding:4px 9px;border-radius:999px;color:#fff;white-space:nowrap}
+.roleline{font-size:12px;color:#d6d6d6;font-weight:600}
+.stats{display:grid;grid-template-columns:1fr 1fr}
+.stat{display:flex;justify-content:space-between;gap:6px;padding:8px 10px;border-top:1px solid #e5e5e5;border-right:1px solid #e5e5e5;font-size:13px;align-items:center;width:100%;background:#fff;border-left:0;border-bottom:0;text-align:left;color:#111}
+.stat:nth-child(2n){border-right:0}.stat .k{font-weight:700;color:#444;font-size:11px;letter-spacing:.04em}.stat .v{font-weight:800;font-size:15px}
+.stat.clickable:hover{background:#fff8d6}.stat.clickable{cursor:pointer}.stat.win{background:#bbf7d0!important}.stat.lose{background:#fecaca!important}.stat.hint{box-shadow:inset 0 0 0 2px var(--gold)}.stat:disabled{cursor:default;color:#111}
+.facedown{width:min(var(--cardw),92vw);height:430px;border-radius:18px;background:repeating-linear-gradient(45deg,#0f2e1c 0 14px,#123a22 14px 28px);border:3px solid var(--gold);display:grid;place-items:center;text-align:center;padding:20px;box-shadow:0 18px 40px #0009}
+.facedown .big{font-family:"Barlow Condensed";font-size:42px;color:var(--gold)}
+.curtain{position:fixed;inset:0;background:#041008f2;z-index:60;display:grid;place-items:center;padding:20px;text-align:center}
+.coin{width:130px;height:130px;border-radius:50%;margin:16px auto;background:radial-gradient(circle at 35% 30%,#ffe97a,#f5c518 55%,#b8860b);color:#3a2a00;display:grid;place-items:center;font-family:"Barlow Condensed";font-size:26px;font-weight:800;border:6px solid #8a6d00;box-shadow:0 14px 30px #0008}
+.coin.flip{animation:flip 1s ease}
+@keyframes flip{0%{transform:rotateY(0)}100%{transform:rotateY(1080deg)}}
+@keyframes floatUp{0%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-70vh) scale(1.6) rotate(20deg);opacity:0}}
+.floater{position:fixed;z-index:80;font-size:44px;pointer-events:none;animation:floatUp 1.6s ease-out forwards}
+.reactions{position:sticky;bottom:10px;z-index:20;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:18px;background:#07130dd9;padding:10px;border-radius:999px;border:1px solid var(--line)}
+.reactions button{border-radius:999px;border:1px solid var(--line);background:#173d27;color:#fff;padding:8px 12px;font-weight:700;font-size:13px}
+.log{background:#081a10;border:1px solid var(--line);border-radius:14px;padding:12px;max-height:180px;overflow:auto;font-size:13px;line-height:1.6;color:var(--muted)}
+.log b{color:#fff}
+.binderGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:14px}
+.mini{background:#fff;color:#111;border-radius:12px;overflow:hidden;border:2px solid #111;cursor:pointer;text-align:left;padding:0}
+.mini .mh{height:74px;position:relative}.mini .mn{font-family:"Barlow Condensed";font-weight:800;font-size:17px;line-height:1;padding:8px 8px 2px}.mini .mt{font-size:12px;color:#555;padding:0 8px 8px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}.filters select,.filters input{padding:10px;border-radius:10px;border:1px solid var(--line);background:#081a10;color:#fff}
+.modal{position:fixed;inset:0;background:#000c;z-index:70;display:grid;place-items:center;padding:16px;overflow:auto}
+.banner{text-align:center;padding:14px;border-radius:14px;background:#2a2103;border:1px solid #8a6d00;font-weight:700;margin:12px 0}
+.hidden{display:none!important}
+.flip180{transform:rotate(180deg)}
+small.note{color:var(--muted)}
+.pickerGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;justify-items:center;margin-top:10px}
+.pickWrap{display:flex;flex-direction:column;align-items:center;gap:8px}
+.pickWrap .tcard{width:min(300px,92vw)}
+.statusPill{display:inline-block;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:#0b2013;font-weight:700;font-size:13px}
+.statusPill.on{border-color:var(--green);color:#86efac}
+.guideSteps{margin:8px 0 0;padding-left:20px;line-height:1.65;color:var(--muted)}
+.guideSteps b{color:#fff}
+.endTag{color:var(--gold);font-weight:800;font-size:12px;letter-spacing:.04em}
+.voiceBar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between;background:#0b2013;border:1px solid var(--line);border-radius:16px;padding:12px;margin:12px 0}
+.voiceBar .vleft{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.voiceDot{width:10px;height:10px;border-radius:50%;background:#64748b;display:inline-block}.voiceDot.live{background:#22c55e;box-shadow:0 0 0 4px #22c55e33}.voiceDot.muted{background:#e63946}
+.promptCard{background:linear-gradient(180deg,#2a2103,#1a1602);border:1px solid #8a6d00;border-radius:16px;padding:14px 16px;margin:12px 0}
+.promptCard .pk{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:800}
+.promptCard .pt{font-size:19px;line-height:1.35;font-weight:700;margin:6px 0 4px}
+.promptCard .ps{color:var(--muted);font-size:13px;line-height:1.5}
+.checkGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}@media(max-width:720px){.checkGrid{grid-template-columns:1fr}}
+.checkItem{background:#0b2013;border:1px solid var(--line);border-radius:14px;padding:12px;font-size:14px;line-height:1.5}.checkItem b{color:#fff}
+.checkItem .num{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--gold);color:#111;font-weight:800;font-size:13px;margin-right:6px;vertical-align:middle}
+.liveCheck{font-size:13px;line-height:1.7;color:var(--muted)}.liveCheck b{color:#fff}
+.pillSmall{display:inline-block;padding:3px 9px;border-radius:999px;border:1px solid var(--line);font-size:12px;font-weight:700}
+</style>
+</head>
+<body>
+<div class="topbar"><div><div class="logo">IPL LEGENDS <span>TOP TRUMPS</span></div><div class="sub">56-Card Pack • Sep 2026 Cutoff</div></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="openBinder()">📚 Card Binder (56)</button><button class="btn" onclick="toggleSound()" id="soundBtn">🔊 Sound On</button><button class="btn" onclick="showSetup()">New Match</button></div></div>
+<div class="wrap">
+
+<!-- SETUP -->
+<section id="setup">
+<div class="hero"><h1>Shuffle. Deal.<br><em>Trump them all.</em></h1><p>The full 56-card IPL Legends pack — every franchise, every marquee star, career stats frozen at September 2026. Pick a stat, beat the other card, take the pile. Ties go to the Super Over Pot.</p></div>
+<div class="panel">
+<label class="lbl">Play mode</label>
+<div class="seg" id="modeSeg">
+<button data-mode="ai" class="sel" onclick="setMode('ai',this)"><b>🤖 Single Player vs Bot</b><span>Just you against the computer</span></button>
+<button data-mode="pass" onclick="setMode('pass',this)"><b>🪑 Tabletop — Pass &amp; Play</b><span>One device, curtain hides cards between turns</span></button>
+<button data-mode="split" onclick="setMode('split',this)"><b>↕️ Split-Screen Face-to-Face</b><span>Both cards visible, flip button for across-the-table play</span></button>
+<button data-mode="sync" onclick="setMode('sync',this)"><b>📡 2 Tabs (Same Device)</b><span>Room code + BroadcastChannel sync between tabs/windows</span></button>
+<button data-mode="remote" onclick="setMode('remote',this)"><b>📱 Remote Duel — 2 Phones + Voice</b><span>Each phone shows ONLY its own cards. Host creates a room code, Player 2 joins it. Talk inside the game with 🎤 Voice — or keep WhatsApp / FaceTime running alongside. Only the caller taps one stat — that stat decides the round.</span></button>
+</div>
+<div id="syncBox" class="hidden"><label class="lbl">Room code (share with Player 2, open this page in a second tab)</label><div style="display:flex;gap:8px"><input type="text" id="roomCode" value="" maxlength="4" style="text-transform:uppercase"><button class="btn gold" onclick="genRoom()">Generate code</button></div><label class="lbl">This tab is</label><div class="seg" id="syncSeatSeg"><button class="sel" onclick="setSeat(0,this)"><b>Player 1 — Host</b><span>Deals the cards &amp; shares the state</span></button><button onclick="setSeat(1,this)"><b>Player 2 — Guest</b><span>Sees only Player 2's cards on this tab</span></button></div><small class="note">Sync works between tabs/windows on the same device/browser via BroadcastChannel. Your cards stay on your tab — Player 2's pile stays face-down here.</small></div>
+<div id="remoteBox" class="hidden"><label class="lbl">Remote room code — 8 letters</label><div style="display:flex;gap:8px;flex-wrap:wrap"><input type="text" id="remoteCode" value="" maxlength="10" style="text-transform:uppercase;max-width:200px" placeholder="ABCD-WXYZ"><button class="btn gold" onclick="genRemote()">Generate code</button></div><label class="lbl">You are</label><div class="seg" id="remoteSeatSeg"><button class="sel" onclick="setSeat(0,this)"><b>Player 1 — Host</b><span>Create the room, read the code out on FaceTime, then deal</span></button><button onclick="setSeat(1,this)"><b>Player 2 — Guest</b><span>Type the host's code and tap Join Room</span></button></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="btn gold" id="hostBtn" onclick="createRoom()">📡 Create Room (Host)</button><button class="btn" id="joinBtn" onclick="joinRoom()">🔗 Join Room (Player 2)</button><span class="statusPill" id="remoteStatus">Not connected yet</span></div>
+<div style="margin-top:12px;background:#081a10;border:1px solid var(--line);border-radius:12px;padding:12px">
+<div style="font-weight:800">🎤 Talk inside the game — no second app needed</div>
+<p style="color:var(--muted);font-size:14px;line-height:1.55;margin:6px 0">Once you see <b style="color:#fff">Connected</b> above, both of you tap <b style="color:#fff">Enable Mic &amp; Talk</b> below (or in the game). Your voices travel on their own private link, phone to phone — US ↔ India. Use earphones to avoid echo. You can mute anytime and keep playing.</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button class="btn gold" id="voiceBtnSetup" onclick="toggleVoice()">🎤 Enable Mic &amp; Talk</button><button class="btn" id="muteBtnSetup" onclick="toggleMute()" disabled>🔇 Mute</button><span class="statusPill" id="voiceStatusSetup">Voice off — connect the room first, then enable mic</span></div>
+<p style="color:var(--muted);font-size:13px;line-height:1.5;margin:8px 0 0">If the browser blocks the mic or voice can't connect, don't stop playing — start a <b style="color:#fff">WhatsApp voice call or FaceTime audio</b>, minimise it, and keep this game open. The talk-starter prompts in the game still give you things to react to together.</p>
+</div>
+<small class="note">How Remote Duel connects now: the two phones meet through a public message relay (over a secure WSS link, with backup relays tried automatically and auto-reconnect if the link drops) — but the relay can never read your game. The 8-letter room code is turned into a one-way hash to name the channel, and every message — names, cards, moves — is encrypted end-to-end in your browser (AES-GCM) with a key made from that code. The relay only ever sees scrambled data on a hashed channel; only the two phones that know the code can unscramble it. The host deals; each screen then shows only that player's own cards, face-down for the opponent. Always read Player 2 the code shown in the green status pill. One browser rule matters: the game must be open as its own page in Safari/Chrome (not embedded inside another app or preview) for secure connections and encryption to work. If a room still can't be made, fall back to Pass &amp; Play on a shared FaceTime screen.</small></div>
+<div id="botBox"><label class="lbl">Bot difficulty</label><div class="seg"><button class="sel" onclick="setBot('rookie',this)"><b>Rookie Bot</b><span>Picks a random stat — great for learning</span></button><button onclick="setBot('legend',this)"><b>Legend Bot</b><span>Picks its strongest stat every time</span></button></div></div>
+<label class="lbl">Deal size — shuffle all 56, keep the rest aside</label>
+<div class="seg" id="dealSeg">
+<button onclick="setDeal(56,this)"><b>🏆 Full Marathon — 56</b><span>28 cards each, nothing held back</span></button>
+<button class="sel" onclick="setDeal(32,this)"><b>⭐ Median Cut — 32 (Default)</b><span>16 each • 24 sealed in the Vault</span></button>
+<button onclick="setDeal(22,this)"><b>⚡ Quick Clash — 22</b><span>11 each • Marquee XI vs XI</span></button>
+</div>
+<div class="grid2" style="margin-top:6px">
+<div><label class="lbl">Player 1 name</label><input type="text" id="p1name" value="Player 1"></div>
+<div><label class="lbl">Player 2 name</label><input type="text" id="p2name" value="Player 2"></div>
+</div>
+<label class="toggle"><input type="checkbox" id="coachToggle" checked style="width:20px;height:20px"> Coach Hint — gold-star the 2 strongest stats on your card (vs pack median)</label>
+<label class="toggle"><input type="checkbox" id="flipToggle" style="width:20px;height:20px"> Flip Player 2's card 180° (for face-to-face tablet play)</label>
+<div style="text-align:center;margin-top:20px"><button class="btn gold" style="font-size:18px;padding:14px 34px" onclick="startToss()">🪙 Toss the Coin &amp; Deal</button></div>
+<p style="text-align:center"><small class="note">Rules: Higher wins on 11 stats • Lower Economy wins • A card with “–” economy can't call Economy and auto-loses an Economy challenge • Ties build the Super Over Pot • <b>Endgame Choice:</b> when a player is down to their last 3 cards, they can see all of them and choose ANY one to play — not just the top card.</small></p>
+</div>
+<div class="panel" style="margin-top:14px">
+<h2 style="margin:0 0 4px;font-size:28px">🌍 US ↔ INDIA — PLAY &amp; TALK ON DIFFERENT DEVICES</h2>
+<p style="color:var(--muted);margin:4px 0;line-height:1.6">This game was made to give you both something to talk about, not just cards to tap. The cards hand you the next line — a stat to argue about, a legend to pick sides on. Pick <b style="color:#fff">one</b> way to talk and stick with it for the whole match:</p>
+<div class="checkGrid">
+<div class="checkItem"><b>🎤 Best: Voice inside this game</b><br>Join the same Remote Duel room, then both tap <b>Enable Mic &amp; Talk</b>. One link, cards + voice together. No WhatsApp juggling. Earphones recommended.</div>
+<div class="checkItem"><b>📞 Just as good: WhatsApp / FaceTime alongside</b><br>Start a WhatsApp <b>voice</b> call (lighter than video) or FaceTime audio, minimise it, then open this game and join the room. Voice keeps playing in the background while you play.</div>
+</div>
+<h3 style="margin:16px 0 4px;font-size:20px">✅ Before you deal — 2-minute check on both phones</h3>
+<div class="checkGrid">
+<div class="checkItem"><span class="num">1</span><b>Same link, two devices</b><br>Send this page's link to Player 2. Each person opens it on <b>their own</b> phone/tablet — one device per player. Don't share one screen for Remote Duel.</div>
+<div class="checkItem"><span class="num">2</span><b>Same room code</b><br>Host taps <b>Create Room</b> and reads the room code out loud. Guest picks <b>Player 2 — Guest</b>, types the same code, taps <b>Join Room</b>. Wait for the green “Connected” pill.</div>
+<div class="checkItem"><span class="num">3</span><b>Allow the microphone</b><br>When the browser asks, tap <b>Allow</b> for mic. If you tapped Block by mistake: tap the 🔒 / site settings in the browser address bar → Microphone → Allow, then reload. Safari (iPhone) and Chrome (Android) both work.</div>
+<div class="checkItem"><span class="num">4</span><b>Sound check</b><br>Say “Can you hear me?” after both mics are on. If there's echo, plug in earphones. If voice still fails, switch to a WhatsApp voice call and keep playing — the game syncs separately.</div>
+<div class="checkItem"><span class="num">5</span><b>Keep this tab open</b><br>Don't close the game tab during the match. Locking the phone or switching apps for a long time can drop the link — if it drops, re-join with the same code and the Host re-deals.</div>
+<div class="checkItem"><span class="num">6</span><b>Final 3 rule — still private</b><br>Down to your last 3 cards? You'll see all 3 and choose one to play. The other player never sees your 3 — only the card you actually play.</div>
+</div>
+<div class="liveCheck" id="deviceCheck" style="margin-top:12px;background:#081a10;border:1px solid var(--line);border-radius:12px;padding:12px">Checking this device…</div>
+<p style="color:var(--muted);margin:12px 0 4px"><b style="color:#fff">Proper duel steps:</b></p>
+<ol class="guideSteps"><li>Both open this page and pick <b>Remote Duel</b> above.</li><li><b>Player 1 (Host)</b> taps <b>Create Room</b> and reads out the room code. <b>Player 2</b> selects “Player 2 — Guest”, types that code and taps <b>Join Room</b>.</li><li>Both tap <b>Enable Mic &amp; Talk</b> and do the sound check — or start your WhatsApp / FaceTime call now.</li><li>Host taps <b>Toss the Coin &amp; Deal</b>. From then on <b>your cards are only on your screen</b> and their cards are only on theirs — the opponent's pile stays face-down.</li><li>On your turn you tap <b>one stat</b> on your card. That single stat is what's compared, the round resolves on both screens, and play moves on. The winner calls the next stat. Use the 💬 <b>Talk Starter</b> card in the game whenever it goes quiet — tap <b>Next prompt</b> for a new one; it changes on both screens together.</li></ol>
+<p style="color:var(--muted);margin:10px 0 4px"><b style="color:#fff">Quick way (one shared screen):</b> on FaceTime tap Share → Share My Screen, open Pass &amp; Play here, and the other player just calls their stat out loud (“Runs!”) while the host taps it.</p>
+<p style="color:var(--muted);margin:4px 0"><b style="color:#fff">Sharing the game:</b> send the other player this page's link — it opens in any phone browser with no install, in the US and in India. A Roblox version would be a separate rebuild inside Roblox Studio (Roblox can't run a web page), so the Remote Duel above is the fastest way to play each other.</p>
+</div>
+<div class="panel" style="margin-top:14px">
+<h2 style="margin:0 0 4px;font-size:28px">💬 TALK STARTERS — BUILT INTO THE GAME</h2>
+<p style="color:var(--muted);line-height:1.6;margin:4px 0">Quiet rounds are normal — the game does the talking for you. A <b style="color:#fff">Talk Starter</b> card sits above the arena during every match: quick cricket picks like “Dhoni or Kohli as captain?” and “You have one over left — Bumrah or Rashid?” A new one pops up automatically after ties, big wins and Final-3 picks, and either player can tap <b>Next prompt</b> anytime — in Remote Duel and 2-Tab play it updates on <b>both screens at once</b>, so you're always reacting to the same question. No right answers — just pick a side out loud.</p>
+<div class="promptCard" style="margin:10px 0 0"><div class="pk">💬 Example talk starter</div><div class="pt" id="setupPromptText">You can pick only ONE captain for a final — Dhoni or Kohli. Who, and why?</div><div class="ps">Say your pick out loud, then tap Next prompt in the game for another. Prompts are about the cards and players in this pack.</div><div style="margin-top:10px"><button class="btn" onclick="cycleSetupPrompt()">🔀 Show another example</button></div></div>
+</div>
+</section>
+
+<!-- TOSS -->
+<section id="toss" class="hidden"><div class="panel" style="text-align:center;max-width:560px;margin:20px auto"><h2 style="font-size:36px;margin:4px">COIN TOSS</h2><p id="tossText" style="color:var(--muted)"></p><div class="coin" id="coinEl">HEADS</div><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn gold" onclick="callToss('Heads')">Call Heads</button><button class="btn gold" onclick="callToss('Tails')">Call Tails</button></div><p><small class="note">Player 1 calls. Winner of the toss calls the first stat.</small></p></div></section>
+
+<!-- GAME -->
+<section id="game" class="hidden">
+<div class="scorebar"><div class="score" id="score1"></div><div class="pot">SUPER OVER POT<br><b id="potCount">0</b> cards</div><div class="score" id="score2"></div></div>
+<div class="voiceBar" id="voiceBar">
+<div class="vleft"><span class="voiceDot" id="voiceDot"></span><span style="font-weight:800">🎤 Voice</span><span class="statusPill" id="voiceStatusGame">Voice off</span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn gold" id="voiceBtnGame" onclick="toggleVoice()">🎤 Enable Mic &amp; Talk</button><button class="btn" id="muteBtnGame" onclick="toggleMute()" disabled>🔇 Mute</button></div>
+</div>
+<p style="color:var(--muted);font-size:13px;line-height:1.5;margin:2px 0 0" id="voiceHint">In Remote Duel, voice uses the same connection as the cards — both players need to tap Enable Mic. In Pass &amp; Play / vs Bot, just talk out loud or keep your WhatsApp / FaceTime call running. If mic is blocked, use a WhatsApp voice call in the background and keep playing here.</p>
+<audio id="remoteAudio" autoplay playsinline style="display:none"></audio>
+<div class="promptCard" id="promptCard">
+<div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><span class="pk">💬 Talk starter — say it out loud</span><span class="pillSmall" id="promptTag">For both of you</span></div>
+<div class="pt" id="promptText">Tap Next prompt to get your first talk starter.</div>
+<div class="ps" id="promptSub">Tiny cricket picks that give you an easy line. Either player can change it — in Remote Duel &amp; 2-Tab it syncs to both screens.</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn gold" onclick="nextPrompt(false)">💬 Next prompt</button><button class="btn" onclick="nextPrompt(true)">🎲 Surprise me</button></div>
+</div>
+<div id="turnBanner" class="banner"></div>
+<div id="resultBanner"></div>
+<div id="pickerBox" class="hidden" style="margin:12px 0"></div>
+<div class="arena"><div><div class="colLabel" id="label1"></div><div id="slot1"></div></div><div class="vs">VS</div><div><div class="colLabel" id="label2"></div><div id="slot2"></div></div></div>
+<div class="reactions" id="reactionBar"></div>
+<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px"><button class="btn" onclick="toggleFlip()">🔄 Flip P2 Card 180°</button><button class="btn red" onclick="suddenDeath()">🏁 Sudden Death — Finish Now</button><button class="btn" onclick="openBinder()">📚 Binder</button></div>
+<h3 style="margin:18px 0 8px">📜 Round History</h3><div class="log" id="logBox">No rounds yet.</div>
+</section>
+
+<!-- GAME OVER -->
+<section id="over" class="hidden"><div class="panel" style="text-align:center;max-width:600px;margin:30px auto"><div style="font-size:64px">🏆</div><h2 id="winnerText" style="font-size:44px;margin:6px"></h2><p id="winnerSub" style="color:var(--muted)"></p><button class="btn gold" style="font-size:17px;padding:13px 30px" onclick="showSetup()">Play Again</button></div></section>
+
+<!-- BINDER -->
+<section id="binder" class="hidden"><div class="panel"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px"><h2 style="margin:0;font-size:32px">CARD BINDER — ALL 56</h2><button class="btn" onclick="closeBinder()">✕ Close</button></div>
+<div class="filters" style="margin-top:12px"><input type="text" id="bSearch" placeholder="Search name…" oninput="renderBinder()"><select id="bTeam" onchange="renderBinder()"><option value="">All Teams</option></select><select id="bRole" onchange="renderBinder()"><option value="">All Roles</option><option>Batsman</option><option>Bowler</option><option>All-Rounder</option><option>WK-Batter</option></select><span id="bCount" style="align-self:center;font-weight:700"></span></div>
+<div class="binderGrid" id="binderGrid"></div></div></section>
+</div>
+
+<div id="curtain" class="curtain hidden"><div><div style="font-size:52px">🙈</div><h2 id="curtainText" style="font-size:34px"></h2><p style="color:var(--muted)">Pass the device — no peeking!</p><button class="btn gold" style="font-size:17px;padding:13px 30px" onclick="hideCurtain()">✅ I'm Ready — Show My Card</button></div></div>
+<div id="cardModal" class="modal hidden"><div><div id="modalCard"></div><div style="text-align:center;margin-top:12px"><button class="btn gold" onclick="document.getElementById('cardModal').classList.add('hidden')">Close</button></div></div></div>
+<div id="shuffleOverlay" class="curtain hidden"><div><div style="font-size:56px">🃏🔀🃏</div><h2 style="font-size:34px">Riffling the pack…</h2><p style="color:var(--muted)">Fisher–Yates shuffle of all 56 cards</p></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/mqtt@5.10.3/dist/mqtt.min.js"></script>
+<script>
+/* ============ DATA: 56 cards [matches,runs,hs,catches,4s,6s,wickets,economy,avg,sr,50s,100s] ============ */
+var TEAMS={CSK:{c:"#b8960a",bg:"linear-gradient(135deg,#f9cd05,#e8a800)"},MI:{c:"#004ba0",bg:"linear-gradient(135deg,#0057b8,#002f6c)"},RCB:{c:"#c00",bg:"linear-gradient(135deg,#ec1c24,#7a0c12)"},KKR:{c:"#3a225d",bg:"linear-gradient(135deg,#5b3a8e,#241543)"},SRH:{c:"#e65c00",bg:"linear-gradient(135deg,#ff822a,#c2410c)"},RR:{c:"#c2146b",bg:"linear-gradient(135deg,#ea1a85,#9d1160)"},GT:{c:"#8a6d1b",bg:"linear-gradient(135deg,#caa64a,#5f4d12)"},DC:{c:"#17449b",bg:"linear-gradient(135deg,#2563eb,#0f2c66)"},PBKS:{c:"#aa1111",bg:"linear-gradient(135deg,#d64545,#7f1d1d)"},LSG:{c:"#0057e2",bg:"linear-gradient(135deg,#2f7bff,#003a99)"}};
+function P(name,team,role,years,stance,move,s){return{name:name,team:team,role:role,years:years,stance:stance,move:move,matches:s[0],runs:s[1],hs:s[2],catches:s[3],fours:s[4],sixes:s[5],wickets:s[6],economy:s[7],avg:s[8],sr:s[9],fifties:s[10],hundreds:s[11]}}
+var PACK=[
+P("MS Dhoni","CSK","WK-Batter","2008–2026","helicopter-shot","🚁 Helicopter Finish",[278,5439,"84*",162,375,264,0,null,38.85,137.85,24,0]),
+P("Ruturaj Gaikwad","CSK","Batsman","2020–2026","cover-drive","Classic Inside-Out Loft",[88,3180,"108*",46,298,126,0,null,41.84,139.40,24,2]),
+P("Ravindra Jadeja","CSK","All-Rounder","2008–2026","wrist-spin","Sword Swing & Dart Spin",[268,3260,"62*",118,238,120,174,7.66,28.34,131.50,4,0]),
+P("Shivam Dube","CSK","All-Rounder","2019–2026","lofted-six","Spin-Demolisher Arc",[89,2140,"95*",28,134,148,5,9.80,31.47,151.20,14,0]),
+P("Matheesha Pathirana","CSK","Bowler","2022–2026","yorker-sling","Baby Malinga Sling Yorker",[42,4,"4*",8,0,0,68,7.88,4.00,80.00,0,0]),
+P("Devon Conway","CSK","Batsman","2022–2026","cover-drive","Late Sweep & Drive",[38,1480,"92*",18,158,48,0,null,44.84,141.60,14,0]),
+P("Rohit Sharma","MI","Batsman","2008–2026","pull-shot","Hitman Front-Foot Pull",[276,7329,"109*",108,661,323,15,8.01,29.79,132.92,49,2]),
+P("Jasprit Bumrah","MI","Bowler","2013–2026","yorker-sling","⚡ Toe-Crushing Yorker",[156,78,"16*",25,6,3,198,7.28,8.66,95.12,0,0]),
+P("Suryakumar Yadav","MI","Batsman","2012–2026","scoop-360","360° Fine-Leg Supla",[174,4390,"103*",80,464,178,0,null,34.56,149.80,31,2]),
+P("Hardik Pandya","MI","All-Rounder","2015–2026","lofted-six","Whipped Helicopter Six",[160,2940,"91",78,224,158,84,8.90,28.82,146.90,12,0]),
+P("Tilak Varma","MI","Batsman","2022–2026","lofted-six","Fearless Pick-Up Smash",[62,1890,"84*",29,152,94,0,null,39.37,147.50,11,0]),
+P("Trent Boult","MI","Bowler","2015–2026","express-pace","First-Over Swing",[128,92,"18*",38,8,4,152,8.24,10.22,106.90,0,0]),
+P("Virat Kohli","RCB","Batsman","2008–2026","cover-drive","🏏 Emperor's Cover Drive",[276,9336,"113",124,844,316,4,8.80,40.42,134.80,68,9]),
+P("Rajat Patidar","RCB","Batsman","2021–2026","lofted-six","Down-the-Track Spin Bash",[48,1490,"112*",24,112,92,0,null,36.34,159.40,11,1]),
+P("Phil Salt","RCB","WK-Batter","2023–2026","pull-shot","Powerplay Flat-Bat Bludgeon",[44,1480,"89*",32,156,78,0,null,36.09,172.10,12,0]),
+P("Josh Hazlewood","RCB","Bowler","2020–2026","express-pace","Test-Length Seam Nip",[48,22,"10*",10,2,0,68,7.92,7.33,84.60,0,0]),
+P("Bhuvneshwar Kumar","RCB","Bowler","2011–2026","express-pace","Knuckleball & Banana Swing",[196,324,"27",38,29,5,212,7.58,8.75,96.40,0,0]),
+P("Krunal Pandya","RCB","All-Rounder","2016–2026","wrist-spin","Round-Arm Fired Dart",[148,1840,"86",54,162,68,92,7.42,22.43,133.20,2,0]),
+P("Sunil Narine","KKR","All-Rounder","2012–2026","mystery-spin","Hide-the-Ball Carrom Spin",[198,1890,"109",44,208,124,204,6.76,18.52,167.40,9,1]),
+P("Andre Russell","KKR","All-Rounder","2012–2026","lofted-six","Muscle Russell Brute Force",[148,2820,"88*",48,198,236,128,9.32,29.37,175.10,13,0]),
+P("Rinku Singh","KKR","Batsman","2018–2026","lofted-six","Last-Over 5-Sixes Miracle",[68,1420,"67*",36,114,78,0,null,33.80,148.90,6,0]),
+P("Varun Chakaravarthy","KKR","Bowler","2019–2026","mystery-spin","Architect's Mystery Googly",[92,32,"10*",18,2,0,116,7.52,6.40,68.00,0,0]),
+P("Venkatesh Iyer","KKR","All-Rounder","2021–2026","pull-shot","Tall Lever Mid-Wicket Whip",[72,1860,"104",28,172,86,3,10.20,31.52,140.20,14,1]),
+P("Harshit Rana","KKR","Bowler","2022–2026","express-pace","Heavy-Ball Slower Cutter",[42,48,"14*",11,5,2,58,8.64,9.60,114.20,0,0]),
+P("Pat Cummins","SRH","All-Rounder","2014–2026","express-pace","Captain's Off-Cutter & Blitz",[82,740,"66*",26,48,48,96,8.58,19.47,152.80,4,0]),
+P("Travis Head","SRH","Batsman","2016–2026","pull-shot","Powerplay Carnage",[48,1580,"102",18,178,88,2,9.50,38.53,178.40,11,1]),
+P("Abhishek Sharma","SRH","All-Rounder","2018–2026","lofted-six","Zero-Backlift Sightscreen Six",[92,2410,"135*",34,215,148,11,8.65,29.39,171.40,13,2]),
+P("Heinrich Klaasen","SRH","WK-Batter","2018–2026","pull-shot","Back-Foot Spin Murder",[65,2110,"104",46,142,138,0,null,42.20,168.50,14,1]),
+P("Nitish Kumar Reddy","SRH","All-Rounder","2023–2026","lofted-six","Inside-Out Extra Cover Six",[38,890,"76*",18,68,54,14,9.40,32.96,146.80,6,0]),
+P("Mohammed Shami","SRH","Bowler","2013–2026","express-pace","Upright-Seam Stump Rattler",[128,86,"21",22,8,3,158,8.38,7.16,94.50,0,0]),
+P("Yashasvi Jaiswal","RR","Batsman","2020–2026","pull-shot","Flamboyant Cut & Upper-Cut",[76,2380,"124",32,284,104,0,null,34.49,153.60,15,2]),
+P("Sanju Samson","RR","WK-Batter","2013–2026","lofted-six","Effortless Stand-and-Deliver",[186,5181,"119",102,432,243,0,null,31.59,141.17,27,5]),
+P("Riyan Parag","RR","All-Rounder","2019–2026","lofted-six","No-Look Wrist Flick",[92,1890,"84*",48,142,102,8,9.60,28.63,142.80,10,0]),
+P("Vaibhav Sooryavanshi","RR","Batsman","2025–2026","lofted-six","Teen Prodigy First-Ball Six",[23,1028,"103",11,88,96,0,null,46.72,224.50,6,2]),
+P("Jofra Archer","RR","Bowler","2018–2026","express-pace","150kph Chin-Music Bouncer",[58,240,"27*",16,16,18,72,7.74,15.00,154.80,0,0]),
+P("Sandeep Sharma","RR","Bowler","2013–2026","express-pace","Death-Over Wide Yorker",[148,62,"9*",24,6,0,162,7.88,7.75,82.60,0,0]),
+P("Shubman Gill","GT","Batsman","2018–2026","cover-drive","Prince's Short-Arm Jab",[135,4680,"129",58,465,158,0,null,40.34,143.50,32,5]),
+P("Rashid Khan","GT","All-Rounder","2017–2026","wrist-spin","100kph Snake-Wrist Googly",[146,680,"79*",56,48,52,182,6.96,16.58,164.20,1,0]),
+P("Jos Buttler","GT","WK-Batter","2016–2026","scoop-360","Boss Ramp & Cover Launch",[128,4290,"124",72,422,196,0,null,38.30,148.90,25,7]),
+P("Sai Sudharsan","GT","Batsman","2022–2026","cover-drive","Velvet Straight Drive",[57,2475,"103",24,245,82,0,null,48.37,147.80,19,3]),
+P("Kagiso Rabada","GT","Bowler","2017–2026","express-pace","High-Release Thunder Seam",[98,238,"44",29,19,11,148,8.42,11.90,112.80,0,0]),
+P("KL Rahul","DC","WK-Batter","2013–2026","cover-drive","Supple Wrist Flick Six",[151,5815,"152*",88,508,239,0,null,46.15,139.15,46,6]),
+P("Axar Patel","DC","All-Rounder","2014–2026","wrist-spin","Bapu's Arm-Ball Skiddy Dart",[172,2080,"66",68,152,98,142,7.36,23.90,134.80,5,0]),
+P("Kuldeep Yadav","DC","Bowler","2016–2026","wrist-spin","Left-Arm Chinaman Drift",[108,198,"35*",24,18,6,122,8.08,12.37,96.10,0,0]),
+P("Mitchell Starc","DC","Bowler","2014–2026","yorker-sling","Left-Arm Inswinging Missile",[58,128,"29*",16,14,3,78,8.48,11.63,108.40,0,0]),
+P("Tristan Stubbs","DC","WK-Batter","2022–2026","scoop-360","Death-Overs Hockey Sweep",[42,1120,"71*",28,88,68,4,8.50,41.48,174.60,7,0]),
+P("Shreyas Iyer","PBKS","Batsman","2015–2026","lofted-six","Dancing Down Spin Loft",[138,3890,"97*",58,338,148,0,null,33.82,134.60,27,0]),
+P("Arshdeep Singh","PBKS","Bowler","2019–2026","yorker-sling","Ice-Cold Wide Blockhole",[88,42,"10*",18,4,1,108,8.68,7.00,78.00,0,0]),
+P("Yuzvendra Chahal","PBKS","Bowler","2013–2026","wrist-spin","Grandmaster Wide Leg-Break",[182,39,"8*",33,2,0,232,7.88,4.33,52.70,0,0]),
+P("Marcus Stoinis","PBKS","All-Rounder","2016–2026","pull-shot","Hulk Straight-Bat Bludgeon",[118,2240,"124*",34,186,118,48,9.45,28.71,144.80,11,1]),
+P("Shashank Singh","PBKS","Batsman","2019–2026","scoop-360","Ice-Vein Chase Finisher",[48,980,"68*",22,78,58,2,9.50,39.20,162.40,6,0]),
+P("Rishabh Pant","LSG","WK-Batter","2016–2026","scoop-360","One-Handed Falling Six",[134,3880,"128*",98,348,184,0,null,35.27,149.40,22,1]),
+P("Nicholas Pooran","LSG","WK-Batter","2019–2026","lofted-six","Whip-Crack Bat Speed Six",[98,2540,"87*",56,168,188,0,null,35.27,165.40,16,0]),
+P("Mayank Yadav","LSG","Bowler","2024–2026","express-pace","156.7kph Thunderbolt Pace",[24,12,"6*",6,1,0,36,7.45,6.00,75.00,0,0]),
+P("Ravi Bishnoi","LSG","Bowler","2020–2026","wrist-spin","Rapid Run-Up Slider Googly",[88,58,"12*",28,4,2,92,7.82,7.25,84.00,0,0]),
+P("Mitchell Marsh","LSG","All-Rounder","2010–2026","pull-shot","Bison Flat-Track Pull",[64,1280,"89",24,112,68,44,8.54,26.66,141.20,8,0])
+];
+var STATS=[{k:"matches",l:"MATCHES"},{k:"runs",l:"TOTAL RUNS"},{k:"hs",l:"HIGHEST SCORE"},{k:"catches",l:"CATCHES"},{k:"fours",l:"4s"},{k:"sixes",l:"6s"},{k:"wickets",l:"WICKETS"},{k:"economy",l:"ECONOMY ↓"},{k:"avg",l:"AVERAGE"},{k:"sr",l:"STRIKE RATE"},{k:"fifties",l:"50s"},{k:"hundreds",l:"100s"}];
+var LEFT=["matches","runs","hs","catches","fours","sixes"],RIGHT=["wickets","economy","avg","sr","fifties","hundreds"];
+function statVal(c,k){if(k==="hs")return parseFloat(String(c.hs).replace("*",""));return c[k]}
+function fmt(c,k){if(k==="economy"&&c.economy===null)return"–";if(k==="hs")return c.hs;var v=c[k];return (k==="avg"||k==="sr"||k==="economy")?Number(v).toFixed(2):v}
+function median(k){var a=PACK.map(function(c){return statVal(c,k)}).filter(function(v){return v!==null&&v!==undefined}).sort(function(x,y){return x-y});return a[Math.floor(a.length/2)]}
+function hints(c){var scored=STATS.map(function(s){var v=statVal(c,s.k);if(v===null)return{k:s.k,score:-1};var m=median(s.k);var sc=s.k==="economy"?(m/Math.max(v,0.01)):(v/Math.max(m,0.01));return{k:s.k,score:sc}}).sort(function(a,b){return b.score-a.score});return[scored[0].k,scored[1].k]}
+function initials(n){return n.split(" ").map(function(w){return w[0]}).slice(0,2).join("")}
+/* stance art */
+function stanceSVG(c){
+ var poses={"cover-drive":"M60 130 L95 90 L130 105 M95 90 L85 55 M130 105 L165 70","pull-shot":"M60 130 L90 95 L55 70 M90 95 L120 60 M55 70 L30 95","helicopter-shot":"M60 135 L95 95 L140 60 M95 95 L80 60 M140 60 L160 95","scoop-360":"M60 135 L90 100 L60 65 M90 100 L125 85 M60 65 L40 40","lofted-six":"M60 130 L95 90 L145 45 M95 90 L85 55 M145 45 L170 65","yorker-sling":"M60 135 L90 95 L130 80 M90 95 L115 55 M130 80 L160 110","express-pace":"M55 135 L90 90 L135 70 M90 90 L100 50 M135 70 L165 45","wrist-spin":"M60 130 L90 95 L125 75 M90 95 L80 60 M125 75 L150 100","mystery-spin":"M60 130 L90 95 L120 70 M90 95 L110 55 M120 70 L145 55","wicketkeeper-dive":"M40 120 L90 105 L140 115 M90 105 L100 75"};
+ var d=poses[c.stance]||poses["lofted-six"];var col=TEAMS[c.team].c;
+ return '<svg viewBox="0 0 200 160" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"><defs><radialGradient id="g'+c.name.replace(/\W/g,"")+'" cx="50%" cy="20%"><stop offset="0%" stop-color="#ffffff" stop-opacity=".55"/><stop offset="100%" stop-color="#000" stop-opacity="0"/></radialGradient></defs><rect width="200" height="160" fill="url(#g'+c.name.replace(/\W/g,"")+')"/><g stroke="#fff" stroke-width="1" opacity=".35"><line x1="20" y1="0" x2="60" y2="90"/><line x1="180" y1="0" x2="140" y2="90"/><line x1="100" y1="0" x2="100" y2="80"/></g><ellipse cx="100" cy="142" rx="78" ry="10" fill="#000" opacity=".3"/><path d="'+d+'" stroke="#0a0a0a" stroke-width="11" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="95" cy="42" r="13" fill="#0a0a0a"/><circle cx="168" cy="34" r="7" fill="#fff" stroke="#c00" stroke-width="2"/><g><circle cx="168" cy="128" r="17" fill="#111" stroke="'+col+'" stroke-width="3"/><text x="168" y="134" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Barlow Condensed">'+initials(c.name)+'</text></g><text x="10" y="150" fill="#fff" opacity=".7" font-size="9" font-weight="700">✦ FLOODLIGHTS • '+c.stance.replace(/-/g," ").toUpperCase()+'</text></svg>';
+}
+function roleIcon(r){return r==="Batsman"?"🏏 Batsman":r==="Bowler"?"⚡ Bowler":r==="All-Rounder"?"🛡️ All-Rounder":"🧤 WK-Batter"}
+function cardHTML(c,opts){
+ opts=opts||{};var hintSet=opts.hints?hints(c):[];var order=LEFT.concat(RIGHT);
+ // render in 2-col order: grid flows row-wise, so interleave left/right
+ var rows=[];for(var i=0;i<6;i++){rows.push(LEFT[i]);rows.push(RIGHT[i]);}
+ var cells=rows.map(function(k){var s=STATS.find(function(x){return x.k===k});var dis=(k==="economy"&&c.economy===null&&opts.interactive);var cls="stat"+(opts.interactive&&!dis?" clickable":"")+(hintSet.indexOf(k)>=0?" hint":"")+(opts.winKey===k?" win":"")+(opts.loseKey===k?" lose":"");
+ return '<button class="'+cls+'" '+(opts.interactive?'onclick="pickStat(\''+k+'\')"':'disabled')+' '+(dis?'disabled title="No economy — cannot call this"':'')+'><span class="k">'+s.l+(hintSet.indexOf(k)>=0?" ⭐":"")+'</span><span class="v">'+fmt(c,k)+'</span></button>'}).join("");
+ return '<div class="tcard '+(opts.dim?"dim":"")+' '+(opts.flip?"flip180":"")+'"><div class="art" style="background:'+TEAMS[c.team].bg+'"><div class="ribbon" style="background:'+TEAMS[c.team].c+'">'+c.years+'<br>IPL • SEP 2026</div><div class="wm">'+c.team+'</div>'+stanceSVG(c)+'<div class="pill">'+c.move+'</div></div><div class="nameplate"><div><div class="nm">'+c.name+'</div><div class="roleline">'+roleIcon(c.role)+'</div></div><span class="teampill" style="background:'+TEAMS[c.team].c+'">'+c.team+'</span></div><div class="stats">'+cells+'</div></div>';
+}
+/* ============ SOUND (Web Audio, synthesized) ============ */
+var AC=null,soundOn=true;
+function ac(){if(!AC)AC=new (window.AudioContext||window.webkitAudioContext)();if(AC.state==="suspended")AC.resume();return AC}
+function tone(f,d,type,g){if(!soundOn)return;try{var a=ac(),o=a.createOscillator(),gn=a.createGain();o.type=type||"sine";o.frequency.value=f;gn.gain.setValueAtTime(g||.15,a.currentTime);gn.gain.exponentialRampToValueAtTime(.001,a.currentTime+d);o.connect(gn);gn.connect(a.destination);o.start();o.stop(a.currentTime+d)}catch(e){}}
+function noiseBurst(d,vol){if(!soundOn)return;try{var a=ac(),b=a.createBuffer(1,a.sampleRate*d,a.sampleRate),ch=b.getChannelData(0);for(var i=0;i<ch.length;i++)ch[i]=(Math.random()*2-1)*(1-i/ch.length);var s=a.createBufferSource();s.buffer=b;var g=a.createGain();g.gain.value=vol||.3;s.connect(g);g.connect(a.destination);s.start()}catch(e){}}
+function sfx(name){if(name==="bat"){noiseBurst(.08,.5);tone(180,.08,"square",.2)}else if(name==="crowd"){noiseBurst(.9,.18);setTimeout(function(){noiseBurst(.7,.12)},200)}else if(name==="timber"){tone(90,.35,"sine",.4);noiseBurst(.15,.3)}else if(name==="horn"){tone(392,.35,"sawtooth",.15);setTimeout(function(){tone(523,.4,"sawtooth",.15)},120)}else if(name==="flip"){tone(600,.12,"sine",.12);setTimeout(function(){tone(900,.15,"sine",.12)},130)}}
+function toggleSound(){soundOn=!soundOn;document.getElementById("soundBtn").textContent=soundOn?"🔊 Sound On":"🔇 Sound Off";if(soundOn)sfx("horn")}
+/* ============ GAME STATE ============ */
+var G={mode:"ai",bot:"rookie",deal:32,piles:[[],[]],pot:[],turn:0,names:["Player 1","Player 2"],revealed:false,lastKey:null,roundWinner:null,flip:false,coach:true,channel:null,over:false,mySeat:null,phase:"stat",pickFor:null,pickKind:null,defPicked:false,mqClient:null,mqKey:null,mqTopic:null,mqId:null,mqSeq:0,mqSeen:{},mqUp:false,mqHbTimer:null,mqSeekTimer:null,joinTimer:null,hostSeen:false,lastJoinSent:0,applyingRemote:false,roundId:0,voiceStream:null,voiceMuted:false,voiceOn:false,voiceWant:false,rtcPc:null,rtcRemoteHello:false,rtcPendingOffer:null,rtcIceQueue:[],rtcMakingOffer:false,promptIdx:-1,promptText:"",roundCount:0,remoteConnected:false};
+var ENDGAME_N=3;
+function setMode(m,el){G.mode=m;document.querySelectorAll("#modeSeg button").forEach(function(b){b.classList.remove("sel")});el.classList.add("sel");document.getElementById("botBox").style.display=m==="ai"?"block":"none";document.getElementById("syncBox").classList.toggle("hidden",m!=="sync");document.getElementById("remoteBox").classList.toggle("hidden",m!=="remote");if(m==="sync"||m==="remote"){if(G.mySeat===null||G.mySeat===undefined)G.mySeat=0}else{G.mySeat=null}document.getElementById("p2name").value=m==="ai"?(G.bot==="legend"?"Legend Bot":"Rookie Bot"):"Player 2"}
+function setSeat(s,el){G.mySeat=s;el.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("sel")});el.classList.add("sel");var st=document.getElementById("remoteStatus");if(st&&G.mode==="remote")st.textContent=s===0?"You're the Host — tap Create Room":"You're Player 2 — enter the host's code and tap Join Room"}
+function setBot(b,el){G.bot=b;el.parentElement.querySelectorAll("button").forEach(function(x){x.classList.remove("sel")});el.classList.add("sel");if(G.mode==="ai")document.getElementById("p2name").value=b==="legend"?"Legend Bot":"Rookie Bot"}
+function setDeal(n,el){G.deal=n;document.querySelectorAll("#dealSeg button").forEach(function(b){b.classList.remove("sel")});el.classList.add("sel")}
+function genRoom(){var code="";"ABCDEFGHJKMNPQRSTUVWXYZ".split("");var L="ABCDEFGHJKMNPQRSTUVWXYZ";for(var i=0;i<4;i++)code+=L[Math.floor(Math.random()*L.length)];document.getElementById("roomCode").value=code}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function showSetup(){["toss","game","over","binder"].forEach(function(id){document.getElementById(id).classList.add("hidden")});document.getElementById("setup").classList.remove("hidden");window.scrollTo(0,0)}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function startToss(){if((G.mode==="sync"||G.mode==="remote")&&G.mySeat===1){if(G.mode==="sync")setupChannel();if(G.mode==="remote")document.getElementById("remoteStatus").textContent="⏳ You're Player 2 — the Host deals. Waiting for their deal to arrive…";document.getElementById("setup").classList.add("hidden");document.getElementById("toss").classList.remove("hidden");document.getElementById("tossText").textContent="You're Player 2 — the Host tosses & deals. Your own cards will appear on this screen only.";document.getElementById("coinEl").textContent="⏳";return}G.names=[esc(document.getElementById("p1name").value||"Player 1"),esc(document.getElementById("p2name").value||"Player 2")];G.coach=document.getElementById("coachToggle").checked;G.flip=document.getElementById("flipToggle").checked;document.getElementById("setup").classList.add("hidden");document.getElementById("toss").classList.remove("hidden");document.getElementById("tossText").textContent=G.names[0]+" calls — pick Heads or Tails. Winner calls the first stat.";document.getElementById("coinEl").textContent="🪙";sendSync({type:"tossOpen",names:G.names})}
+function callToss(call){if((G.mode==="sync"||G.mode==="remote")&&G.mySeat===1)return;var res=Math.random()<.5?"Heads":"Tails";var coin=document.getElementById("coinEl");coin.classList.remove("flip");void coin.offsetWidth;coin.classList.add("flip");sfx("flip");setTimeout(function(){coin.textContent=res.toUpperCase();var p1wins=call===res;G.turn=p1wins?0:1;document.getElementById("tossText").innerHTML="It landed <b>"+res+"</b>! 🎉 <b>"+G.names[G.turn]+"</b> wins the toss and calls first.";setTimeout(deal,1100)},1000)}
+function deal(){document.getElementById("toss").classList.add("hidden");var ov=document.getElementById("shuffleOverlay");ov.classList.remove("hidden");sfx("crowd");
+ setTimeout(function(){ov.classList.add("hidden");var deck=shuffle(PACK.slice());var inPlay=deck.slice(0,G.deal);G.piles=[[],[]];inPlay.forEach(function(c,i){G.piles[i%2].push(c)});G.pot=[];G.revealed=false;G.lastKey=null;G.over=false;G.roundCount=0;G.log=[];addLog("Dealt <b>"+G.deal+" cards</b> ("+(G.deal/2)+" each)"+(G.deal<56?"; "+(56-G.deal)+" sealed in the Vault.":" — full marathon!"));if(G.promptIdx<0)nextPrompt(true);document.getElementById("game").classList.remove("hidden");updateVoiceUI();setupChannel();beginRound();broadcastState()},900)}
+function addLog(h){G.log=G.log||[];G.log.unshift(h);document.getElementById("logBox").innerHTML=G.log.join("<br>")||"No rounds yet."}
+function setupChannel(){if(G.mode!=="sync")return;var code=(document.getElementById("roomCode").value||"IPLX").toUpperCase();try{if(G.channel)G.channel.close();G.channel=new BroadcastChannel("ipl-trumps-"+code);G.channel.onmessage=function(e){handleSyncMsg(e.data)};addLog("📡 Room <b>"+code+"</b> open — moves sync across tabs on this device.")}catch(e){}}
+function broadcast(key){sendSync({type:"stat",key:key})}
+function sendSync(msg){if(G.channel){try{G.channel.postMessage(msg)}catch(e){}}if(G.mode==="remote"){mqSend(msg)}}
+function serializeState(){function idx(p){return p.map(function(c){return PACK.indexOf(c)})}return{piles:[idx(G.piles[0]),idx(G.piles[1])],pot:idx(G.pot),turn:G.turn,names:G.names,deal:G.deal,phase:G.phase,pickFor:G.pickFor,pickKind:G.pickKind,defPicked:G.defPicked,over:G.over,log:G.log||[],promptIdx:G.promptIdx,roundCount:G.roundCount}}
+function broadcastState(){if(G.mode!=="sync"&&G.mode!=="remote")return;if(G.mySeat!==0&&G.mode==="remote")return;if(G.mode==="sync"&&G.mySeat!==0)return;sendSync({type:"state",state:serializeState()})}
+function applyState(s){G.roundId++;G.applyingRemote=true;G.piles=[s.piles[0].map(function(i){return PACK[i]}),s.piles[1].map(function(i){return PACK[i]})];G.pot=s.pot.map(function(i){return PACK[i]});G.turn=s.turn;G.names=s.names;G.deal=s.deal;G.phase=s.phase;G.pickFor=s.pickFor;G.pickKind=s.pickKind;G.defPicked=s.defPicked;G.over=s.over;if(typeof s.promptIdx==="number"&&s.promptIdx>=0){G.promptIdx=s.promptIdx;G.promptText=promptByIndex(s.promptIdx);renderPrompt()}if(typeof s.roundCount==="number")G.roundCount=s.roundCount;G.revealed=false;G.lastKey=null;G.roundWinner=null;G.log=s.log||[];document.getElementById("logBox").innerHTML=G.log.join("<br>")||"No rounds yet.";["setup","toss","over"].forEach(function(id){document.getElementById(id).classList.add("hidden")});document.getElementById("game").classList.remove("hidden");document.getElementById("resultBanner").innerHTML="";G.applyingRemote=false;render();renderPicker();maybeBot()}
+function handleSyncMsg(d){if(!d)return;if(d.type==="stat"){if(G.phase==="stat")pickStat(d.key,true)}else if(d.type==="pickCard"){doPickCard(d.player,d.pileIndex,true)}else if(d.type==="prompt"){G.promptIdx=d.idx;G.promptText=promptByIndex(d.idx);renderPrompt();tone(880,.12,"sine",.08);addLog("💬 <b>New talk starter</b> — check the prompt card and say your pick out loud!")}else if(d.type==="state"){applyState(d.state)}else if(d.type==="tossOpen"){if(G.mySeat===1){G.names=d.names;document.getElementById("setup").classList.add("hidden");document.getElementById("toss").classList.remove("hidden");document.getElementById("tossText").textContent="The Host is tossing the coin — your cards are on their way…";document.getElementById("coinEl").textContent="🪙"}}}
+/* ---- Remote Duel transport: encrypted relay (MQTT over WSS) + WebCrypto ----
+   The PeerJS public cloud broker failed repeatedly in real browsers (CDN
+   timeouts, "The operation is insecure", broker server-errors, unreachable
+   broker), so Remote Duel no longer uses it. Rooms now run over public
+   MQTT-over-WSS relays (several, tried in order, with auto-reconnect).
+   PRIVACY: the relay must never see names or hands, so —
+   • The room code is a longer secret: 8 letters (~78 billion combinations).
+   • The MQTT topic is "iplt/v1/" + SHA-256("ipl-legends-room:"+secret) —
+     the relay and anyone sniffing see only a hash, never the code.
+   • Every payload is encrypted end-to-end with AES-GCM (256-bit), the key
+     derived from the room secret via PBKDF2 (120k rounds, SHA-256).
+   The relay only ever carries ciphertext on a hashed topic. Only the two
+   browsers that know the code can read a single card. */
+function setRemoteStatus(t,on){var el=document.getElementById("remoteStatus");if(el){el.textContent=t;el.classList.toggle("on",!!on)}}
+function fmtRoomCode(raw){return raw.length===8?raw.slice(0,4)+"-"+raw.slice(4):raw}
+function normRoomCode(v){return (v||"").toUpperCase().replace(/[^A-Z]/g,"")}
+function genRemote(){var L="ABCDEFGHJKMNPQRSTUVWXYZ";var code="";for(var i=0;i<8;i++)code+=L[Math.floor(Math.random()*L.length)];document.getElementById("remoteCode").value=fmtRoomCode(code);setRemoteStatus("Code "+fmtRoomCode(code)+" ready — tap Create Room (Host), then read this code to Player 2")}
+var MQ_BROKERS=["wss://broker.emqx.io:8084/mqtt","wss://broker.hivemq.com:8884/mqtt","wss://mqtt.eclipseprojects.io:443/mqtt","wss://test.mosquitto.org:8081"];
+var MQ_LIB_URLS=["https://cdn.jsdelivr.net/npm/mqtt@5.10.3/dist/mqtt.min.js","https://unpkg.com/mqtt@5.10.3/dist/mqtt.min.js","https://cdnjs.cloudflare.com/ajax/libs/mqtt/5.10.3/mqtt.min.js"];
+function mqAvailable(){return typeof mqtt!=="undefined"&&mqtt&&typeof mqtt.connect==="function"}
+var mqLibBusy=false;
+function loadMqLib(done){if(mqAvailable()){done(true);return}if(mqLibBusy){setTimeout(function(){loadMqLib(done)},600);return}mqLibBusy=true;var i=0;function next(){if(mqAvailable()){mqLibBusy=false;done(true);return}if(i>=MQ_LIB_URLS.length){mqLibBusy=false;done(false);return}var url=MQ_LIB_URLS[i++];var s=document.createElement("script");var finished=false;var to=setTimeout(function(){if(finished)return;finished=true;try{s.remove()}catch(e){} next()},9000);s.onload=function(){if(finished)return;finished=true;clearTimeout(to);setTimeout(next,60)};s.onerror=function(){if(finished)return;finished=true;clearTimeout(to);next()};s.src=url;document.head.appendChild(s)}next()}
+function setRoomBusy(b){["hostBtn","joinBtn"].forEach(function(id){var e=document.getElementById(id);if(e)e.disabled=b})}
+function mqPreflight(){
+ if(!window.isSecureContext||!window.crypto||!crypto.subtle)return "This page is open in a window that blocks secure connections — it isn't running as a secure browser page. Open this game's link directly in Safari or Chrome (as its own page, not inside another app's preview), then tap again. Pass & Play and 2 Tabs work in any window.";
+ return null;
+}
+function teEnc(s){return new TextEncoder().encode(s)}
+function b64e(buf){var b=new Uint8Array(buf);var s="";for(var i=0;i<b.length;i++)s+=String.fromCharCode(b[i]);return btoa(s)}
+function b64d(s){var bin=atob(s);var b=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)b[i]=bin.charCodeAt(i);return b}
+function hexOf(buf){return Array.prototype.map.call(new Uint8Array(buf),function(x){return ("0"+x.toString(16)).slice(-2)}).join("")}
+async function mqDerive(secret){
+ var th=await crypto.subtle.digest("SHA-256",teEnc("ipl-legends-room:"+secret));
+ var base=await crypto.subtle.importKey("raw",teEnc(secret),"PBKDF2",false,["deriveKey"]);
+ var key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:teEnc("ipl-legends-mqtt-v1"),iterations:120000,hash:"SHA-256"},base,{name:"AES-GCM",length:256},false,["encrypt","decrypt"]);
+ return {topic:"iplt/v1/"+hexOf(th),key:key};
+}
+async function mqEncrypt(obj){
+ var iv=crypto.getRandomValues(new Uint8Array(12));
+ var ct=await crypto.subtle.encrypt({name:"AES-GCM",iv:iv},G.mqKey,teEnc(JSON.stringify(obj)));
+ return JSON.stringify({v:1,from:G.mqId,iv:b64e(iv),ct:b64e(ct)});
+}
+async function mqDecrypt(raw){
+ try{
+  var env=JSON.parse(raw);if(!env||env.v!==1||!env.iv||!env.ct)return null;
+  if(env.from===G.mqId)return null; // our own message echoed back by the relay
+  var pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64d(env.iv)},G.mqKey,b64d(env.ct));
+  return JSON.parse(new TextDecoder().decode(pt));
+ }catch(e){return null}
+}
+function mqSend(msg,retain){
+ if(!G.mqUp||!G.mqClient||!G.mqKey)return;
+ msg.mid=G.mqId+":"+(++G.mqSeq);
+ mqEncrypt(msg).then(function(payload){try{G.mqClient.publish(G.mqTopic,payload,{qos:1,retain:!!retain})}catch(e){}}).catch(function(){});
+}
+function mqTeardown(){
+ if(G.mqHbTimer){clearInterval(G.mqHbTimer);G.mqHbTimer=null}
+ if(G.mqSeekTimer){clearInterval(G.mqSeekTimer);G.mqSeekTimer=null}
+ if(G.joinTimer){clearTimeout(G.joinTimer);G.joinTimer=null}
+ if(G.mqClient){try{G.mqClient.end(true)}catch(e){} G.mqClient=null}
+ G.mqUp=false;G.remoteConnected=false;G.hostSeen=false;
+}
+function mqHandle(raw){
+ mqDecrypt(raw).then(function(d){
+  if(!d||!d.mid)return;
+  if(G.mqSeen[d.mid])return;G.mqSeen[d.mid]=1;
+  if(d.type==="__presence"){ // host is in the room (retained + heartbeat, tagged with host session id)
+   if(G.mySeat===1){G.hostSeen=true;var newHost=!!(d.sid&&d.sid!==G.hostSid);if(newHost)G.hostSid=d.sid;
+    if(!G.remoteConnected||newHost){G.lastJoinSent=Date.now();mqSend({type:"__join"})}
+    if(!G.remoteConnected)setRemoteStatus("🟢 Host found — joining room…")}
+   return}
+  if(d.type==="__seek"){if(G.mySeat===0)mqSend({type:"__presence",sid:G.mqId},true);return}
+  if(d.type==="__join"){
+   if(G.mySeat===0){var first=!G.remoteConnected;G.remoteConnected=true;setRoomBusy(false);
+    setRemoteStatus("🟢 Connected! Player 2 has joined — toss & deal when ready. Both tap Enable Mic to talk.",true);updateVoiceUI();
+    mqSend({type:"__welcome"});
+    if(G.piles[0].length)mqSend({type:"state",state:serializeState()});
+    if(first)addLog("📡 <b>Player 2 joined the room.</b> Your cards are on your screen only — theirs are on theirs.")}
+   return}
+  if(d.type==="__welcome"){
+   if(G.mySeat===1){if(G.joinTimer){clearTimeout(G.joinTimer);G.joinTimer=null}G.remoteConnected=true;setRoomBusy(false);
+    setRemoteStatus("🟢 Connected! You're in — waiting for the Host to toss & deal. Tap Enable Mic to talk.",true);updateVoiceUI()}
+   return}
+  if(d.type==="__rtc"){handleRtcSignal(d);return}
+  handleSyncMsg(d);
+ }).catch(function(){});
+}
+function mqConnect(secret,seat,done){
+ mqTeardown();
+ G.mySeat=seat;G.mqId="c"+Math.random().toString(36).slice(2,10);G.mqSeq=0;G.mqSeen={};G.hostSeen=false;G.lastJoinSent=0;
+ mqDerive(secret).then(function(d){G.mqTopic=d.topic;G.mqKey=d.key;tryBroker(0)}).catch(function(){done(false)});
+ function tryBroker(i){
+  if(i>=MQ_BROKERS.length){done(false);return}
+  var url=MQ_BROKERS[i];var settled=false;
+  var client;
+  try{client=mqtt.connect(url,{clientId:"iplt-"+G.mqId+"-"+Math.floor(Math.random()*1e6),keepalive:40,reconnectPeriod:3000,connectTimeout:12000,clean:true})}catch(e){tryBroker(i+1);return}
+  var to=setTimeout(function(){if(settled)return;settled=true;try{client.end(true)}catch(e){} tryBroker(i+1)},14000);
+  client.on("connect",function(){
+   if(!settled){settled=true;clearTimeout(to);G.mqClient=client;G.mqUp=true;
+    client.subscribe(G.mqTopic,{qos:1},function(){});
+    if(seat===0){mqSend({type:"__presence",sid:G.mqId},true);
+     G.mqHbTimer=setInterval(function(){if(G.mqUp)mqSend({type:"__presence",sid:G.mqId},true)},25000);
+    }else{
+     mqSend({type:"__seek"});
+     G.mqSeekTimer=setInterval(function(){if(!G.hostSeen&&G.mqUp)mqSend({type:"__seek"});else if(G.mqSeekTimer){clearInterval(G.mqSeekTimer);G.mqSeekTimer=null}},8000);
+    }
+    done(true);
+   }else{ // automatic reconnect to the same relay
+    G.mqUp=true;client.subscribe(G.mqTopic,{qos:1},function(){});
+    if(seat===0)mqSend({type:"__presence",sid:G.mqId},true);else if(!G.remoteConnected)mqSend({type:"__seek"});
+    if(G.remoteConnected)setRemoteStatus("🟢 Relay link restored — you're connected again.",true);
+   }
+  });
+  client.on("message",function(topic,payload){if(topic===G.mqTopic)mqHandle(payload.toString())});
+  client.on("reconnect",function(){if(G.mqClient===client)setRemoteStatus("Relay link dropped — reconnecting automatically… keep this tab open")});
+  client.on("offline",function(){if(G.mqClient===client)G.mqUp=false});
+  client.on("close",function(){if(G.mqClient===client)G.mqUp=false});
+  client.on("error",function(){if(!settled){settled=true;clearTimeout(to);try{client.end(true)}catch(e){} tryBroker(i+1)}});
+ }
+}
+function createRoom(){
+ var pre=mqPreflight();if(pre){setRemoteStatus(pre);return}
+ var raw=normRoomCode(document.getElementById("remoteCode").value);
+ if(raw.length!==8){genRemote();raw=normRoomCode(document.getElementById("remoteCode").value)}
+ var code=fmtRoomCode(raw);
+ setRoomBusy(true);setRemoteStatus("Opening your encrypted room "+code+"… (keep this tab open)");
+ var start=function(){mqConnect(raw,0,function(ok){setRoomBusy(false);
+  if(ok)setRemoteStatus("🟢 Room "+code+" open — read this code to Player 2. Waiting for them to join…",true);
+  else setRemoteStatus("Couldn't reach any connection relay in time. Your network may be blocking them — switch Wi-Fi / mobile data (or turn a VPN off), reload this page, then tap Create Room again. Pass & Play and 2 Tabs still work without it.")})};
+ if(!mqAvailable()){setRemoteStatus("Loading the connection library — trying another source if needed…");loadMqLib(function(ok){if(ok)start();else{setRoomBusy(false);setRemoteStatus("Couldn't load the connection library from any source — check your internet, reload the page, then tap Create Room again. Pass & Play still works without it.")}});return}
+ start();
+}
+function joinRoom(){
+ var pre=mqPreflight();if(pre){setRemoteStatus(pre);return}
+ var raw=normRoomCode(document.getElementById("remoteCode").value);
+ if(raw.length!==8){setRemoteStatus("Type the Host's full room code first — it's 8 letters, like ABCD-WXYZ");return}
+ var code=fmtRoomCode(raw);
+ setRoomBusy(true);setRemoteStatus("Joining room "+code+"…");
+ var start=function(){mqConnect(raw,1,function(ok){setRoomBusy(false);
+  if(!ok){setRemoteStatus("Couldn't reach any connection relay in time — switch Wi-Fi / mobile data (or turn a VPN off), reload, and tap Join Room again.");return}
+  setRemoteStatus("Looking for the Host's room "+code+"… the Host must tap Create Room and stay on this screen.");
+  if(G.joinTimer)clearTimeout(G.joinTimer);
+  G.joinTimer=setTimeout(function(){if(!G.remoteConnected&&!G.hostSeen)setRemoteStatus("Room "+code+" not found yet. Make sure the Host tapped Create Room FIRST, is still on the 'Room open' screen, and that you typed the same code. This screen keeps listening — if the Host creates the room now, you'll join automatically.")},20000)})};
+ if(!mqAvailable()){setRemoteStatus("Loading the connection library — trying another source if needed…");loadMqLib(function(ok){if(ok)start();else{setRoomBusy(false);setRemoteStatus("Couldn't load the connection library from any source — check your internet, reload the page, then tap Join Room again.")}});return}
+ start();
+}
+function isBotTurn(){return G.mode==="ai"&&G.turn===1&&!G.revealed&&!G.over}
+function maybeBot(){if(G.over||G.revealed)return;
+ // Bot endgame card choice
+ if(G.mode==="ai"&&G.phase==="pick"&&G.pickFor===1){document.getElementById("turnBanner").textContent="🤖 "+G.names[1]+" is choosing one of its last "+G.piles[1].length+" cards…";setTimeout(function(){if(G.phase!=="pick"||G.pickFor!==1)return;var best=0,bestScore=-Infinity;G.piles[1].forEach(function(c,i){var hk=hints(c)[0];var m=median(hk);var v=statVal(c,hk);var score=(v===null||v===undefined)?-1:(hk==="economy"?(m/Math.max(v,0.01)):(v/Math.max(m,0.01)));if(G.bot==="rookie")score=Math.random();if(score>bestScore){bestScore=score;best=i}});doPickCard(1,best,false)},1000);return}
+ if(isBotTurn()&&G.phase==="stat"){document.getElementById("turnBanner").textContent="🤖 "+G.names[1]+" is thinking…";setTimeout(function(){var c=G.piles[1][0];if(!c)return;var key;if(G.bot==="legend"){key=hints(c)[0]}else{var opts=STATS.map(function(s){return s.k}).filter(function(k){return !(k==="economy"&&c.economy===null)});key=opts[Math.floor(Math.random()*opts.length)]}pickStat(key)},1100)}}
+function activeActor(){return G.phase==="pick"?G.pickFor:G.turn}
+function maybeCurtain(){if(G.mode==="pass"&&!G.revealed){document.getElementById("curtainText").textContent="Pass to "+G.names[activeActor()];document.getElementById("curtain").classList.remove("hidden")}}
+/* ---- Endgame Choice: last-3 card picker ---- */
+function qualifies(p){return G.piles[p].length>=2&&G.piles[p].length<=ENDGAME_N}
+function beginRound(){G.defPicked=false;G.revealed=false;if(qualifies(G.turn)){G.phase="pick";G.pickFor=G.turn;G.pickKind="lead"}else if(qualifies(1-G.turn)){G.phase="pick";G.pickFor=1-G.turn;G.pickKind="defend"}else{G.phase="stat";G.pickFor=null;G.pickKind=null}render();renderPicker();maybeCurtain();maybeBot()}
+function afterPick(player){if(player===G.turn&&G.pickKind==="lead"&&qualifies(1-G.turn)&&!G.defPicked){G.phase="pick";G.pickFor=1-G.turn;G.pickKind="defend";render();renderPicker();maybeCurtain();maybeBot();return}if(G.pickKind==="defend")G.defPicked=true;G.phase="stat";G.pickFor=null;G.pickKind=null;render();renderPicker();maybeCurtain();maybeBot()}
+function doPickCard(player,pileIndex,remote){if(G.phase!=="pick"||G.pickFor!==player)return;var pile=G.piles[player];if(!pile||pileIndex<0||pileIndex>=pile.length)return;var chosen=pile.splice(pileIndex,1)[0];pile.unshift(chosen);addLog("🃏 <b>"+G.names[player]+"</b> used Endgame Choice and leads with <b>"+chosen.name+"</b> (picked from their last "+pile.length+" cards).");if(!remote)sendSync({type:"pickCard",player:player,pileIndex:pileIndex});if(!remote)autoPrompt("pick");sfx("flip");afterPick(player)}
+function localControls(p){if(G.mode==="ai")return p===0;if(G.mode==="sync"||G.mode==="remote")return G.mySeat===p;return true}
+function renderPicker(){var box=document.getElementById("pickerBox");if(!box)return;if(G.phase!=="pick"||G.revealed||G.over){box.classList.add("hidden");box.innerHTML="";return}var p=G.pickFor,pile=G.piles[p];box.classList.remove("hidden");
+ if(!localControls(p)){box.innerHTML='<div class="banner">🙈 <b>'+G.names[p]+'</b> is down to their last '+pile.length+' cards and is choosing which one to play — their cards stay hidden on your screen.</div>';return}
+ var kindTxt=G.pickKind==="lead"?"You're calling this round":"The caller is about to pick a stat — choose which card defends for you";
+ box.innerHTML='<div class="banner" style="text-align:left">🃏 <b>ENDGAME CHOICE — '+G.names[p]+', these are ALL your remaining '+pile.length+' cards.</b><br>'+kindTxt+'. Tap <b>“Play this card”</b> under the one you want — it goes on top and is played this round.</div><div class="pickerGrid">'+pile.map(function(c,i){return '<div class="pickWrap">'+cardHTML(c,{})+'<button class="btn gold" onclick="doPickCard('+p+','+i+',false)">▶ Play this card — '+esc(c.name)+'</button></div>'}).join("")+'</div>'}
+function hideCurtain(){document.getElementById("curtain").classList.add("hidden")}
+function toggleFlip(){G.flip=!G.flip;render()}
+function render(){
+ var s1=document.getElementById("score1"),s2=document.getElementById("score2");
+ s1.className="score"+(G.turn===0?" active":"");s2.className="score"+(G.turn===1?" active":"");
+ s1.innerHTML='<div class="who">'+G.names[0]+'</div><div class="n">'+G.piles[0].length+'</div><div>cards</div>'+(qualifies(0)?'<div class="endTag">🃏 ENDGAME — CHOICE ACTIVE</div>':"");
+ s2.innerHTML='<div class="who">'+G.names[1]+'</div><div class="n">'+G.piles[1].length+'</div><div>cards</div>'+(qualifies(1)?'<div class="endTag">🃏 ENDGAME — CHOICE ACTIVE</div>':"");
+ document.getElementById("potCount").textContent=G.pot.length;
+ document.getElementById("label1").textContent=G.names[0]+"'s Top Card";document.getElementById("label2").textContent=G.names[1]+"'s Top Card";
+ var c1=G.piles[0][0],c2=G.piles[1][0];if(!c1||!c2)return;
+ var show1,show2;
+ if(G.revealed){show1=show2=true}
+ else if(G.mode==="split"){show1=show2=true}
+ else if(G.mode==="pass"){var act=activeActor();show1=act===0;show2=act===1}
+ else if(G.mode==="sync"||G.mode==="remote"){show1=G.mySeat===0;show2=G.mySeat===1} // each screen shows ONLY its own cards
+ else{show1=true;show2=false} // ai: hide bot until reveal
+ var winKey1=null,loseKey1=null,winKey2=null,loseKey2=null;
+ if(G.revealed&&G.lastKey){if(G.roundWinner===0){winKey1=G.lastKey;loseKey2=G.lastKey}else if(G.roundWinner===1){winKey2=G.lastKey;loseKey1=G.lastKey}}
+ var canCall1=!G.revealed&&G.phase==="stat"&&G.turn===0&&localControls(0);
+ var canCall2=!G.revealed&&G.phase==="stat"&&G.turn===1&&localControls(1);
+ document.getElementById("slot1").innerHTML=show1?cardHTML(c1,{interactive:canCall1,hints:G.coach&&canCall1,winKey:winKey1,loseKey:loseKey1}):'<div class="facedown"><div><div class="big">IPL<br>LEGENDS</div><p style="color:#b9c9b8;font-weight:700">'+G.piles[0].length+' cards in pile • Their cards stay on their screen</p></div></div>';
+ document.getElementById("slot2").innerHTML=show2?cardHTML(c2,{interactive:canCall2,hints:G.coach&&canCall2,winKey:winKey2,loseKey:loseKey2,flip:G.flip}):'<div class="facedown"><div><div class="big">IPL<br>LEGENDS</div><p style="color:#b9c9b8;font-weight:700">'+G.piles[1].length+' cards in pile • Their cards stay on their screen</p></div></div>';
+ var tb=document.getElementById("turnBanner");
+ if(!G.revealed&&G.phase==="pick")tb.innerHTML="🃏 <b>ENDGAME CHOICE</b> — <b>"+G.names[G.pickFor]+"</b> has "+G.piles[G.pickFor].length+" cards left and picks ANY one of them to play (see below). Everyone else waits."+(G.pot.length?" <br>🔥 Super Over Pot holds "+G.pot.length+" cards!":"");
+ else if(!G.revealed)tb.innerHTML="🎯 <b>"+G.names[G.turn]+"</b>'s call — only "+G.names[G.turn]+" taps <b>ONE stat</b> on their card. That one stat is compared and moves the game; "+G.names[1-G.turn]+" waits."+(G.mode==="ai"&&G.turn===1?" (bot picks automatically)":"")+(G.pot.length?" <br>🔥 Super Over Pot holds "+G.pot.length+" cards!":"");
+}
+function compare(key,a,b){
+ var va=statVal(a,key),vb=statVal(b,key);
+ if(key==="economy"){if(va===null&&vb===null)return 0;if(va===null)return -1;if(vb===null)return 1;if(va===vb)return 0;return va<vb?1:-1}
+ if(va===vb)return 0;return va>vb?1:-1;
+}
+function pickStat(key,remote){
+ if(G.revealed||G.over||G.phase!=="stat")return;
+ var caller=G.turn,other=1-caller;var a=G.piles[caller][0],b=G.piles[other][0];if(!a||!b)return;
+ if(key==="economy"&&a.economy===null){document.getElementById("resultBanner").innerHTML='<div class="banner">🚫 '+a.name+' has no Economy (–) — that stat can\'t be called. Pick another!</div>';return}
+ if(!remote)broadcast(key);
+ sfx("bat");G.lastKey=key;G.roundId++;var myRound=G.roundId;
+ var cmp=compare(key,a,b); // from caller's perspective: 1 caller wins, -1 other wins, 0 tie — but need winner index
+ var winner=null;
+ if(cmp!==0){winner=cmp===1?caller:other}
+ G.revealed=true;G.roundWinner=winner;
+ var sLabel=STATS.find(function(s){return s.k===key}).l;
+ var rb=document.getElementById("resultBanner");
+ if(winner===null){sfx("horn");rb.innerHTML='<div class="banner">🤝 TIE on '+sLabel+' ('+fmt(a,key)+' vs '+fmt(b,key)+')! Both cards go into the 🔥 SUPER OVER POT. '+G.names[caller]+' calls again with the next card.</div>'}
+ else{sfx(winner===0?"crowd":"timber");rb.innerHTML='<div class="banner">'+(winner===caller?"✅":"✅")+' <b>'+G.names[winner]+'</b> wins on '+sLabel+': '+a.name+' '+fmt(a,key)+' vs '+b.name+' '+fmt(b,key)+(key==="economy"?" (lower wins)":"")+(G.pot.length?' — and scoops the '+G.pot.length+'-card pot!':'')+'</div>'}
+ render();renderPicker();
+ setTimeout(function(){applyResult(winner,caller,key,a,b,myRound)},2100);
+}
+function applyResult(winner,caller,key,a,b,rid){
+ if(rid!==undefined&&rid!==G.roundId)return;G.roundId++;G.roundCount++;
+ var c1=G.piles[0].shift(),c2=G.piles[1].shift();
+ if(winner===null){G.pot.push(c1,c2);addLog("🤝 Tie on <b>"+key+"</b> — pot grows to "+G.pot.length+" cards. "+G.names[caller]+" calls again.");if(!G.applyingRemote)autoPrompt("tie")}
+ else{var won=[c1,c2].concat(G.pot);shuffle(won);G.piles[winner]=G.piles[winner].concat(won);G.pot=[];addLog("<b>"+G.names[winner]+"</b> won on <b>"+key+"</b> ("+a.name+" vs "+b.name+") and takes "+won.length+" card(s).");G.turn=winner;if(!G.applyingRemote)autoPrompt("round")}
+ G.revealed=false;G.lastKey=null;G.roundWinner=null;document.getElementById("resultBanner").innerHTML="";
+ if(G.piles[0].length===0||G.piles[1].length===0){gameOver(G.piles[0].length>G.piles[1].length?0:1,"captured every card in play!");broadcastState();return}
+ beginRound();broadcastState();
+}
+function suddenDeath(){if(G.piles[0].length===G.piles[1].length){document.getElementById("resultBanner").innerHTML='<div class="banner">🤝 Dead level at '+G.piles[0].length+' cards each — play one more round to break it!</div>';return}gameOver(G.piles[0].length>G.piles[1].length?0:1,"wins Sudden Death with more cards ("+Math.max(G.piles[0].length,G.piles[1].length)+" vs "+Math.min(G.piles[0].length,G.piles[1].length)+").")}
+function gameOver(w,why){G.over=true;sfx("crowd");document.getElementById("game").classList.add("hidden");document.getElementById("over").classList.remove("hidden");document.getElementById("winnerText").textContent="🏆 "+G.names[w]+" WINS!";document.getElementById("winnerSub").textContent=G.names[w]+" "+why+" Final score: "+G.piles[0].length+" – "+G.piles[1].length+".";window.scrollTo(0,0)}
+/* reactions */
+var REACT=[["🚀","SIXER!","bat"],["🎯","BOWLED HIM!","timber"],["😱","NO WAY!","horn"],["🔥","TRUMP CARD!","crowd"],["👏","NICE CALL!","crowd"],["😎","TOO EASY!","horn"]];
+document.getElementById("reactionBar").innerHTML=REACT.map(function(r,i){return '<button onclick="react('+i+')">'+r[0]+" "+r[1]+"</button>"}).join("");
+function react(i){sfx(REACT[i][2]);for(var j=0;j<6;j++){var s=document.createElement("div");s.className="floater";s.textContent=REACT[i][0];s.style.left=(8+Math.random()*84)+"vw";s.style.bottom="8vh";s.style.animationDelay=(j*0.12)+"s";document.body.appendChild(s);setTimeout(function(el){el.remove()},2600,s)}}
+/* ============ TALK STARTERS ============ */
+var TALK_PROMPTS=[
+"You can pick only ONE captain for a final — Dhoni or Kohli. Who, and why?",
+"One over left, 12 runs to defend. Bumrah or Rashid Khan — who gets the ball?",
+"Winner just played a card — loser, be honest: would YOU have picked that same stat?",
+"Build your dream opening pair from this pack. Who opens for you?",
+"Which card in this pack surprised you most — the player you didn't expect to be that strong?",
+"You need a six off the last ball. Who do you want on strike — Russell, Klaasen or Pooran?",
+"Pick a team to support if your favourite team got knocked out. Who and why?",
+"Who is the most underrated player in this pack? Defend your pick in one line.",
+"Trade time: swap one player between two teams in this pack. What's your swap?",
+"You are the coach. Which stat on the next card are you most scared of?",
+"Last 3 cards time — talk through your pick out loud before you tap it. What's your plan?",
+"Which legend in this pack would you want batting for your life — one innings, all or nothing?",
+"Six or wicket — call it: what happens on the next ball of a real match you're imagining?",
+"Pick your Player of the Match from the cards played so far. One name, one reason.",
+"If you could watch ONE of these players live in a stadium, who would it be?",
+"Who hits the longest six in this pack? Name your player — no stats, just gut feel.",
+"You get to keep ONE card from this game forever. Which card are you keeping?",
+"Chase or defend? You win the toss in a final — what do you choose and why?",
+"Which two players in this pack would make the best batting pair together?",
+"Fast bowler vs spinner in the last over — which side are you on?",
+"Name a young player in this pack who'll be a superstar in 5 years. Lock it in.",
+"Your turn to be commentator: describe the last round like it's on TV, in one sentence.",
+"Who in this pack has the coolest signature move? Act out the celebration.",
+"If these two top cards played a real match against each other, who actually wins?",
+"Pick a stat you NEVER call and tell the other player why you avoid it.",
+"Build a 3-player mini-team: one batter, one bowler, one all-rounder from this pack.",
+"Which team's colours would you actually wear? Pick one jersey from this pack.",
+"Super Over! Both teams tied. Pick your 3 batters for the Super Over — go.",
+"Tell the other player one cricket memory — a match you watched that you'll never forget.",
+"Next round prediction: call HIGH or LOW on the winner's stat before it's revealed."
+];
+var setupPromptI=0;
+function promptByIndex(i){return TALK_PROMPTS[((i%TALK_PROMPTS.length)+TALK_PROMPTS.length)%TALK_PROMPTS.length]}
+function renderPrompt(){var t=document.getElementById("promptText");if(t&&G.promptText)t.textContent=G.promptText;var tag=document.getElementById("promptTag");if(tag)tag.textContent=G.promptIdx>=0?("Prompt "+(G.promptIdx+1)+" of "+TALK_PROMPTS.length+" • synced"):"For both of you"}
+function nextPrompt(surprise,remote){var nxt;if(surprise){do{nxt=Math.floor(Math.random()*TALK_PROMPTS.length)}while(nxt===G.promptIdx)}else{nxt=(G.promptIdx+1)%TALK_PROMPTS.length}G.promptIdx=nxt;G.promptText=promptByIndex(nxt);renderPrompt();if(!remote)sendSync({type:"prompt",idx:nxt});tone(880,.12,"sine",.1)}
+function autoPrompt(reason){if((G.mode==="sync"||G.mode==="remote")&&G.mySeat!==0)return;if(G.roundCount>0&&G.roundCount%3!==0&&reason!=="tie"&&reason!=="pick")return;nextPrompt(true)}
+function cycleSetupPrompt(){setupPromptI=(setupPromptI+1)%TALK_PROMPTS.length;var el=document.getElementById("setupPromptText");if(el)el.textContent=TALK_PROMPTS[setupPromptI]}
+/* ============ VOICE CHAT (direct WebRTC audio, set up over the encrypted room) ============
+   Voice no longer depends on PeerJS either. In Remote Duel, the two browsers
+   exchange WebRTC setup messages through the same AES-GCM-encrypted room
+   channel as the cards; the audio itself then travels directly phone-to-phone.
+   If voice can't connect, it degrades honestly: keep a WhatsApp / FaceTime
+   voice call running alongside — the cards never depend on voice. */
+function voiceStatusText(){if(G.voiceOn&&!G.voiceMuted)return"🟢 Voice live — you can talk now";if(G.voiceOn&&G.voiceMuted)return"🔴 You're muted — tap Unmute to talk";if(G.voiceStream)return"Mic ready — connecting voice…";return G.mode==="remote"?(G.remoteConnected?"Room connected — tap Enable Mic to talk":"Voice off — connect the room first, then enable mic"):(G.mode==="sync"?"2-Tab is one device — talk out loud, or run WhatsApp / FaceTime alongside":"Voice off")}
+function updateVoiceUI(){var on=G.voiceOn,mut=G.voiceMuted;var txt=voiceStatusText();["voiceStatusSetup","voiceStatusGame"].forEach(function(id){var e=document.getElementById(id);if(e)e.textContent=txt});["voiceBtnSetup","voiceBtnGame"].forEach(function(id){var e=document.getElementById(id);if(e)e.textContent=(on||G.voiceWant)?"📴 End Voice":"🎤 Enable Mic & Talk"});["muteBtnSetup","muteBtnGame"].forEach(function(id){var e=document.getElementById(id);if(e){e.disabled=!G.voiceStream;e.textContent=mut?"🔊 Unmute":"🔇 Mute"}});var d=document.getElementById("voiceDot");if(d)d.className="voiceDot"+(on?(mut?" muted":" live"):"");var hint=document.getElementById("voiceHint");if(hint){if(G.mode==="remote")hint.textContent="Remote Duel: voice is set up through the same encrypted room as the cards, then the audio travels directly phone to phone. Both players must tap Enable Mic. Use earphones to stop echo. If voice fails, keep a WhatsApp voice call running in the background — your cards still sync here.";else if(G.mode==="sync")hint.textContent="2-Tab mode: both tabs are on this one device, so just talk out loud — or keep a WhatsApp / FaceTime voice call running alongside. For phone-to-phone voice inside the game, use Remote Duel.";else hint.textContent="Single-device modes: just talk out loud if you're together, or keep your WhatsApp / FaceTime call running while you play."}}
+function voiceStat(t){["voiceStatusSetup","voiceStatusGame"].forEach(function(id){var e=document.getElementById(id);if(e)e.textContent=t})}
+function setVoiceError(msg){["voiceStatusSetup","voiceStatusGame"].forEach(function(id){var e=document.getElementById(id);if(e)e.textContent=msg});addLog("🎤 "+esc(msg))}
+async function ensureMic(){if(G.voiceStream)return G.voiceStream;if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)throw new Error("nomedia");var stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true},video:false});G.voiceStream=stream;G.voiceMuted=false;stream.getAudioTracks().forEach(function(t){t.enabled=true});return stream}
+function attachRemoteStream(stream){var a=document.getElementById("remoteAudio");if(a){a.srcObject=stream;a.play&&a.play().catch(function(){})}G.voiceOn=true;updateVoiceUI();addLog("🎤 <b>Voice connected</b> — you should hear each other now. Say hello!")}
+function rtcIceConfig(){return{iceServers:[{urls:"stun:stun.l.google.com:19302"},{urls:"stun:stun1.l.google.com:19302"},{urls:"stun:stun.cloudflare.com:3478"},{urls:["turn:openrelay.metered.ca:80","turn:openrelay.metered.ca:443","turn:openrelay.metered.ca:443?transport=tcp"],username:"openrelayproject",credential:"openrelayproject"}]}}
+function rtcEnsurePc(){
+ if(G.rtcPc)return G.rtcPc;
+ var RTC=window.RTCPeerConnection||window.webkitRTCPeerConnection;
+ if(!RTC)throw new Error("nowebrtc");
+ var pc=new RTC(rtcIceConfig());G.rtcPc=pc;
+ pc.onicecandidate=function(e){if(e.candidate){try{mqSend({type:"__rtc",kind:"ice",cand:e.candidate.toJSON()})}catch(err){}}};
+ pc.ontrack=function(e){if(e.streams&&e.streams[0])attachRemoteStream(e.streams[0])};
+ pc.onconnectionstatechange=function(){if(!G.rtcPc)return;var st=pc.connectionState;
+  if(st==="connected"){voiceStat("🟢 Voice live — you can talk now")}
+  else if(st==="failed"){voiceStat("Voice couldn't connect phone-to-phone on these networks — keep playing and use a WhatsApp voice call alongside; your cards still sync here.")}
+  else if(st==="disconnected"){voiceStat("Voice link dropped — tap End Voice, then Enable Mic again. Cards keep syncing either way.")}};
+ if(G.voiceStream)G.voiceStream.getAudioTracks().forEach(function(t){pc.addTrack(t,G.voiceStream)});
+ return pc;
+}
+async function rtcMakeOffer(){
+ var pc=G.rtcPc;if(!pc||G.rtcMakingOffer)return;
+ if(pc.signalingState!=="stable"||pc.remoteDescription)return;
+ G.rtcMakingOffer=true;
+ try{var offer=await pc.createOffer();await pc.setLocalDescription(offer);mqSend({type:"__rtc",kind:"offer",sdp:pc.localDescription})}catch(e){}
+ G.rtcMakingOffer=false;
+}
+async function rtcAnswerOffer(sdp){
+ var pc=rtcEnsurePc();
+ try{
+  await pc.setRemoteDescription(new RTCSessionDescription(sdp));
+  G.rtcIceQueue.splice(0).forEach(function(c){pc.addIceCandidate(new RTCIceCandidate(c)).catch(function(){})});
+  var ans=await pc.createAnswer();await pc.setLocalDescription(ans);
+  mqSend({type:"__rtc",kind:"answer",sdp:pc.localDescription});
+  voiceStat("📞 Voice connecting… you should hear each other in a few seconds");
+ }catch(e){setVoiceError("Couldn't answer the voice call — tap End Voice, then Enable Mic again. Or use a WhatsApp voice call alongside.")}
+}
+function handleRtcSignal(d){
+ if(G.mode!=="remote")return;
+ if(d.kind==="hello"){
+  G.rtcRemoteHello=true;
+  if(G.voiceWant&&G.voiceStream){rtcEnsurePc();if(G.mySeat===0)rtcMakeOffer();else if(G.rtcPendingOffer){var s=G.rtcPendingOffer;G.rtcPendingOffer=null;rtcAnswerOffer(s)}}
+  else if(!G.voiceWant){voiceStat("📞 The other player started voice — tap Enable Mic & Talk to join and be heard");addLog("📞 <b>The other player started voice chat.</b> Tap <b>Enable Mic &amp; Talk</b> to join the conversation.")}
+  return}
+ if(d.kind==="bye"){rtcClosePc(false);G.voiceOn=false;updateVoiceUI();voiceStat("The other player ended voice — tap Enable Mic to restart it. Cards keep playing.");return}
+ if(d.kind==="ice"){if(G.rtcPc&&G.rtcPc.remoteDescription){G.rtcPc.addIceCandidate(new RTCIceCandidate(d.cand)).catch(function(){})}else G.rtcIceQueue.push(d.cand);return}
+ if(d.kind==="offer"){
+  if(G.voiceWant&&G.voiceStream){rtcAnswerOffer(d.sdp)}
+  else{G.rtcPendingOffer=d.sdp;voiceStat("📞 The other player started voice — tap Enable Mic & Talk to join and be heard");addLog("📞 <b>The other player started voice chat.</b> Tap <b>Enable Mic &amp; Talk</b> to join the conversation.")}
+  return}
+ if(d.kind==="answer"){
+  if(G.rtcPc){G.rtcPc.setRemoteDescription(new RTCSessionDescription(d.sdp)).then(function(){G.rtcIceQueue.splice(0).forEach(function(c){G.rtcPc.addIceCandidate(new RTCIceCandidate(c)).catch(function(){})})}).catch(function(){})}
+  return}
+}
+function rtcClosePc(notify){
+ if(notify&&G.mode==="remote"&&G.mqUp){try{mqSend({type:"__rtc",kind:"bye"})}catch(e){}}
+ if(G.rtcPc){try{G.rtcPc.close()}catch(e){} G.rtcPc=null}
+ G.rtcRemoteHello=false;G.rtcPendingOffer=null;G.rtcIceQueue=[];G.rtcMakingOffer=false;
+}
+async function startVoiceCall(){
+ if(G.mode==="remote"){
+  if(!G.remoteConnected){setVoiceError("Connect the room first (Create / Join Room), then enable voice.");return}
+  var stream;
+  try{stream=await ensureMic()}catch(err){throw err}
+  G.voiceWant=true;updateVoiceUI();
+  try{rtcEnsurePc()}catch(e){G.voiceWant=false;setVoiceError("This browser window blocks live voice — open the game link directly in Safari/Chrome, or use a WhatsApp voice call alongside. Your cards still sync here.");return}
+  // Our mic tracks may have arrived after the peer connection was created
+  if(G.rtcPc){var have=G.rtcPc.getSenders().some(function(s){return s.track&&s.track.kind==="audio"});if(!have)stream.getAudioTracks().forEach(function(t){G.rtcPc.addTrack(t,stream)})}
+  mqSend({type:"__rtc",kind:"hello"});
+  if(G.rtcPendingOffer){var s2=G.rtcPendingOffer;G.rtcPendingOffer=null;rtcAnswerOffer(s2)}
+  else if(G.mySeat===0&&G.rtcRemoteHello)rtcMakeOffer();
+  voiceStat("📞 Voice connecting… the other player needs to tap Enable Mic too — you'll hear each other once both mics are on");
+  return;
+ }
+ if(G.mode==="sync"){
+  // Same device, two tabs: there is no second phone to send voice to. Be honest.
+  voiceStat("2-Tab mode is one device — you're in the same room, so talk out loud. For phone-to-phone voice inside the game, switch to Remote Duel; or run a WhatsApp / FaceTime call alongside.");
+  addLog("🎤 In-game voice lives in <b>Remote Duel</b> (two phones). In 2-Tab mode both players are on this device — talk out loud, or keep a WhatsApp / FaceTime call running.");
+  return;
+ }
+ // Local modes: mic test only — be honest that there's no one to send voice to
+ await ensureMic();G.voiceOn=true;updateVoiceUI();["voiceStatusSetup","voiceStatusGame"].forEach(function(id){var e=document.getElementById(id);if(e)e.textContent="🎤 Mic works! In this mode you're on one device — talk out loud, or use Remote Duel for phone-to-phone voice."});addLog("🎤 Mic check passed in a local mode — for two-phone voice, switch to Remote Duel.")
+}
+async function toggleVoice(){
+ if(G.voiceWant||G.voiceOn){stopVoice();return}
+ try{await startVoiceCall()}catch(err){
+  if(err&&(err.name==="NotAllowedError"||err.name==="PermissionDeniedError"))setVoiceError("Mic blocked — tap the 🔒 in the address bar → Microphone → Allow, reload, and try again. Meanwhile, use a WhatsApp voice call alongside.");
+  else if(err&&err.message==="nomedia")setVoiceError("This browser can't share a mic here — switch to a WhatsApp / FaceTime voice call alongside and keep playing.");
+  else if(err&&/insecure/i.test(err.message||""))setVoiceError("This browser window blocks live voice — open the game link directly in Safari/Chrome, or use a WhatsApp voice call alongside. Your cards still sync here.");
+  else setVoiceError("Couldn't access the mic — check permission and try again, or use a WhatsApp voice call alongside.");
+ }
+ updateVoiceUI();
+}
+function stopVoice(){rtcClosePc(true);if(G.voiceStream){G.voiceStream.getTracks().forEach(function(t){t.stop()});G.voiceStream=null}G.voiceOn=false;G.voiceWant=false;G.voiceMuted=false;var a=document.getElementById("remoteAudio");if(a)a.srcObject=null;updateVoiceUI();addLog("🎤 Voice off — cards keep playing. Tap Enable Mic anytime to talk again.")}
+function toggleMute(){if(!G.voiceStream)return;G.voiceMuted=!G.voiceMuted;G.voiceStream.getAudioTracks().forEach(function(t){t.enabled=!G.voiceMuted});updateVoiceUI();if(G.voiceMuted)addLog("🔇 You muted yourself — the other player can't hear you until you unmute.");else addLog("🔊 You're unmuted — talk away!")}
+/* binder */
+var teamSel=document.getElementById("bTeam");Object.keys(TEAMS).forEach(function(t){var o=document.createElement("option");o.textContent=t;teamSel.appendChild(o)});
+var binderReturn="setup";
+function openBinder(){binderReturn=document.getElementById("game").classList.contains("hidden")?"setup":"game";["setup","game","over","toss"].forEach(function(id){document.getElementById(id).classList.add("hidden")});document.getElementById("binder").classList.remove("hidden");renderBinder();window.scrollTo(0,0)}
+function closeBinder(){document.getElementById("binder").classList.add("hidden");document.getElementById(binderReturn).classList.remove("hidden")}
+function renderBinder(){var q=(document.getElementById("bSearch").value||"").toLowerCase(),t=document.getElementById("bTeam").value,r=document.getElementById("bRole").value;var list=PACK.filter(function(c){return(!q||c.name.toLowerCase().indexOf(q)>=0)&&(!t||c.team===t)&&(!r||c.role===r)});document.getElementById("bCount").textContent=list.length+" / 56 cards";document.getElementById("binderGrid").innerHTML=list.map(function(c){var idx=PACK.indexOf(c);return '<button class="mini" onclick="viewCard('+idx+')"><div class="mh" style="background:'+TEAMS[c.team].bg+'">'+stanceSVG(c)+'</div><div class="mn">'+c.name+'</div><div class="mt">'+c.team+" • "+c.role+"<br>"+c.matches+" matches • "+c.runs+" runs • "+c.wickets+" wkts</div></button>"}).join("")}
+function viewCard(i){document.getElementById("modalCard").innerHTML=cardHTML(PACK[i],{});document.getElementById("cardModal").classList.remove("hidden")}
+function initDeviceCheck(){var el=document.getElementById("deviceCheck");if(!el)return;var ua=navigator.userAgent||"";var isIOS=/iPhone|iPad|iPod/i.test(ua);var isAndroid=/Android/i.test(ua);var isTouch=("ontouchstart" in window)||navigator.maxTouchPoints>0;var browser=isIOS?"Safari / iOS browser":(/Chrome/i.test(ua)?"Chrome":(/Firefox/i.test(ua)?"Firefox":"Browser"));var micOk=!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia);var secure=window.isSecureContext;var kind=isIOS?"iPhone / iPad":isAndroid?"Android phone / tablet":isTouch?"Touch device":"Computer / laptop";el.innerHTML="<b>📱 This device:</b> "+kind+" • "+browser+"<br><b>Microphone:</b> "+(micOk?(secure?"Supported — you'll be asked to Allow when you tap Enable Mic":"Needs a secure (https) page for mic — if voice is blocked, use WhatsApp voice alongside"):"Not available in this browser — use a WhatsApp / FaceTime voice call alongside")+"<br><b>For your partner in India:</b> any phone works — Android Chrome or iPhone Safari. Send them this same link, use the <b>same room code</b>, and both tap <b>Enable Mic</b> after connecting. Different Wi-Fi / mobile data is fine — you're supposed to be on different networks."}
+genRoom();
+if(!mqAvailable())loadMqLib(function(){});
+G.promptIdx=0;G.promptText=TALK_PROMPTS[0];renderPrompt();initDeviceCheck();updateVoiceUI();
+// If setMode changes, refresh voice hints
+var _origSetMode=setMode;setMode=function(m,el){_origSetMode(m,el);updateVoiceUI()};
+</script>
+</body>
+</html>
